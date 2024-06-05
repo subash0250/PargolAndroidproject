@@ -1,2 +1,3 @@
 # PargolAndroidproject
-Androidproject
+Git connected
+
