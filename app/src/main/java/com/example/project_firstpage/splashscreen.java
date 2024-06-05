@@ -23,19 +23,17 @@ public class splashscreen extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splashscreen);
 
+        int splashscreentimer = 5000;
+
         imageView = findViewById(R.id.splashscreen);
 
-
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent i1 = new Intent(splashscreen.this, MainActivity.class);
-
-                startActivity(i1);
-            }
-        });
+new Handler().postDelayed(new Runnable() {
+    @Override
+    public void run() {
+Intent i = new Intent(splashscreen.this, MainActivity.class);
+startActivity(i);
+    }
+},splashscreentimer);
 
     }
 }

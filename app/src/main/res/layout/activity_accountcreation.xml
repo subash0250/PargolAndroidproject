@@ -1,10 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Accountcreation">
+    tools:context=".Accountcreation"
+    android:orientation="vertical"
+    android:gravity="center">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create an Account"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email ::"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="left"/>
+
+        <EditText
+            android:id="@+id/createAccountemail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:text="your email address"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="First Name ::"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="left"/>
+
+        <EditText
+            android:id="@+id/FirstName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:text="given name"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last Name ::"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="left"/>
+
+        <EditText
+            android:id="@+id/lastname"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:text="Family name"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password ::"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="left"/>
+
+        <EditText
+            android:id="@+id/passwordcreatin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:text="password"
+            android:textSize="20sp"
+            />
+
+
+        <Button
+            android:id="@+id/accountsubmitbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create"
+            android:layout_margin="20dp"/>
+
+
+
+
+</LinearLayout>
