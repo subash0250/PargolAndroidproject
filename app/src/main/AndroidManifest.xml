@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Project_firstpage"
         tools:targetApi="31">
         <activity
+            android:name=".firstPage"
+            android:exported="false" />
+        <activity
+            android:name=".Dashboard"
+            android:exported="false" />
+        <activity
             android:name=".Accountcreation"
             android:exported="false" />
         <activity

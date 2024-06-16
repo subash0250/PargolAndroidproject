@@ -10,7 +10,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class page2 extends AppCompatActivity {
@@ -18,6 +27,8 @@ public class page2 extends AppCompatActivity {
     EditText Uname,pwd;
     TextView tvforgotpwd,tvnewtolibrary;
     Button button;
+
+    FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,38 +39,28 @@ public class page2 extends AppCompatActivity {
         button = findViewById(R.id.submitbutton);
         tvforgotpwd = findViewById(R.id.forgotpwd);
         tvnewtolibrary =findViewById(R.id.newtolibrary);
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String emailaddress = Uname.getText().toString();
-                String pwdcode = pwd.getText().toString();
+mAuth= FirebaseAuth.getInstance();
 
 
-                if(emailaddress.isEmpty() || pwdcode.isEmpty()){
+button.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
 
-                    Toast.makeText(page2.this, "Uname or password cannot be empty", Toast.LENGTH_SHORT).show();
-                } else if (emailaddress.equals("gaddamsubashreddy@gmail.com") && pwdcode.equals( "1234")) {
+        userlogin();
 
-                    Toast.makeText(page2.this, "Login successful", Toast.LENGTH_SHORT).show();
+    }
+});
 
-                }
-                else{
-                    Toast.makeText(page2.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        });
 
         tvforgotpwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent resetpage = new Intent(page2.this, Forgotpassword.class);
-                startActivity(resetpage);
+              Intent forgotpassword = new Intent(page2.this, Forgotpassword.class);
+              startActivity(forgotpassword);
+              finish();
             }
         });
+
 
         tvnewtolibrary.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +68,50 @@ public class page2 extends AppCompatActivity {
 
                 Intent Accountcreationpage = new Intent(page2.this, Accountcreation.class);
                 startActivity(Accountcreationpage);
+                finish();
+            }
+        });
+
+
+    }
+
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseUser currentuser = mAuth.getCurrentUser();
+//        if(currentuser != null)
+//        {
+//            Intent intent = new Intent(page2.this,MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//    }
+    public void userlogin(){
+
+        String emailadd = Uname.getText().toString();
+        String passcode = pwd.getText().toString();
+
+
+        if(emailadd.isEmpty() || passcode.isEmpty())
+        {
+            Toast.makeText(page2.this,"Please fill all the fields",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mAuth.signInWithEmailAndPassword(emailadd,passcode).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if(task.isSuccessful()){
+
+                    Toast.makeText(page2.this, "login successfull", Toast.LENGTH_SHORT).show();
+
+                    Intent k = new Intent(page2.this, Dashboard.class);
+                    startActivity(k);
+                    finish();
+
+                    Uname.setText( " ");
+                    pwd.setText(" ");
+
+                }
             }
         });
     }

@@ -13,19 +13,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-Button letsbeginbtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        letsbeginbtn = findViewById(R.id.begining);
-        letsbeginbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, page2.class);
-                startActivity(i);
-                finish();
-            }
-        });
+
+
     }
 }
