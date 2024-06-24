@@ -39,7 +39,7 @@ public class page2 extends AppCompatActivity {
         button = findViewById(R.id.submitbutton);
         tvforgotpwd = findViewById(R.id.forgotpwd);
         tvnewtolibrary =findViewById(R.id.newtolibrary);
-mAuth= FirebaseAuth.getInstance();
+        mAuth= FirebaseAuth.getInstance();
 
 
 button.setOnClickListener(new View.OnClickListener() {
