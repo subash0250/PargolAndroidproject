@@ -3,37 +3,62 @@ package com.example.project_firstpage;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class splashscreen extends AppCompatActivity {
 
+    private static final int SPLASH_TIME_OUT = 3000;
+    private FirebaseAuth mAuth;
 
-    int spashscreentimeout =2000;
-    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splashscreen);
 
-        int splashscreentimer = 5000;
+        mAuth = FirebaseAuth.getInstance();
 
-        imageView = findViewById(R.id.splashscreen);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if (currentUser != null) {
+                    String userId = currentUser.getUid();
+                    FirebaseDatabase.getInstance().getReference("users").child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
 
-new Handler().postDelayed(new Runnable() {
-    @Override
-    public void run() {
-Intent i = new Intent(splashscreen.this, firstPage.class);
-startActivity(i);
-    }
-},splashscreentimer);
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String role = dataSnapshot.child("role").getValue(String.class);
+                            if (role != null && role.equals("admin")) {
+                                Intent intent = new Intent(splashscreen.this, AdminDashboardActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Intent intent = new Intent(splashscreen.this, Dashboard.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
 
+
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+
+                    });
+                } else {
+                    Intent i = new Intent(splashscreen.this, Login.class);
+                    startActivity(i);
+                    finish();
+                }
+            }
+        }, SPLASH_TIME_OUT);
     }
 }

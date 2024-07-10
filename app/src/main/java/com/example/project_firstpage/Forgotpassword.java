@@ -10,9 +10,6 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,7 +45,7 @@ Resetpassword();
        cancelbutton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Intent cancelactivity = new Intent(Forgotpassword.this, page2.class);
+               Intent cancelactivity = new Intent(Forgotpassword.this, Login.class);
                startActivity(cancelactivity);
                finish();
            }
@@ -92,7 +89,7 @@ Resetpassword();
 
                         newpwd.setText("");
                         confirmationpwd.setText("");
-                        Intent i = new Intent(Forgotpassword.this, page2.class);
+                        Intent i = new Intent(Forgotpassword.this, Login.class);
                         startActivity(i);
                         finish();
                     }

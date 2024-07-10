@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/edtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Book Title"
+        android:inputType="text"
+        android:textSize="25sp"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/edtAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Author"
+        android:inputType="text"
+        android:textSize="25sp"
+        android:layout_marginBottom="16dp"/>
+    <EditText
+        android:id="@+id/languages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Languages"
+        android:inputType="text"
+        android:textSize="25sp"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/genere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="gener"
+        android:inputType="text"
+        android:textSize="25sp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_gravity="center"/>
+</LinearLayout>
