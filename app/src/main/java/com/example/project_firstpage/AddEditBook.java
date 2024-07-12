@@ -1,5 +1,6 @@
 package com.example.project_firstpage;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,11 +16,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddEditBook extends AppCompatActivity {
 
-    private EditText edtTitle, edtAuthor,edtlanguage,edtgener;
+    private EditText edtTitle, edtAuthor,edtlanguage,edtgener, edtimage;
     private Button btnSubmit;
     private DatabaseReference booksDatabase;
     private String bookId;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,7 @@ public class AddEditBook extends AppCompatActivity {
         edtAuthor = findViewById(R.id.edtAuthor);
         edtlanguage = findViewById(R.id.languages);
         edtgener = findViewById(R.id.genere);
+        edtimage = findViewById(R.id.image);
         btnSubmit = findViewById(R.id.btnSubmit);
 
         booksDatabase = FirebaseDatabase.getInstance().getReference("books");
@@ -48,23 +51,24 @@ public class AddEditBook extends AppCompatActivity {
                 String author = edtAuthor.getText().toString();
                 String language = edtlanguage.getText().toString();
                 String gener = edtgener.getText().toString();
+                String image = edtimage.getText().toString();
                 if (TextUtils.isEmpty(title) || TextUtils.isEmpty(author) || TextUtils.isEmpty(language) || TextUtils.isEmpty(gener) ) {
                     Toast.makeText(AddEditBook.this, "All fields are required", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (bookId != null) {
-                    updateBook(title, author,language,gener);
+                    updateBook(title, author,language,gener, image);
                 } else {
-                    addBook(title, author,language,gener);
+                    addBook(title, author,language,gener,image);
                 }
             }
         });
     }
 
-    private void addBook(String title, String author,String language, String gener) {
+    private void addBook(String title, String author,String language, String gener, String image) {
         String id = booksDatabase.push().getKey();
-        Book book = new Book(id, title, author,language,gener);
+        Book book = new Book(id, title, author,language,gener,image);
         booksDatabase.child(id).setValue(book).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(AddEditBook.this, "Book added", Toast.LENGTH_SHORT).show();
@@ -75,8 +79,8 @@ public class AddEditBook extends AppCompatActivity {
         });
     }
 
-    private void updateBook(String title, String author,String language, String gener) {
-        Book book = new Book(bookId, title, author,language,gener);
+    private void updateBook(String title, String author,String language, String gener, String image) {
+        Book book = new Book(bookId, title, author,language,gener, image);
         booksDatabase.child(bookId).setValue(book).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(AddEditBook.this, "Book updated", Toast.LENGTH_SHORT).show();

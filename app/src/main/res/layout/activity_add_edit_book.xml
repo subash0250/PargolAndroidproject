@@ -39,6 +39,14 @@
         android:inputType="text"
         android:textSize="25sp"
         android:layout_marginBottom="16dp"/>
+    <EditText
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Book Url"
+        android:inputType="text"
+        android:textSize="25sp"
+        android:layout_marginBottom="16dp"/>
 
     <Button
         android:id="@+id/btnSubmit"

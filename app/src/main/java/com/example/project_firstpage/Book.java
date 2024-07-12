@@ -8,13 +8,15 @@ public class Book {
     private String author;
     private String language;
     private String gener;
+    private  String image;
 
-    public Book(String id, String title, String author, String language, String gener) {
+    public Book(String id, String title, String author, String language, String gener, String image) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.language = language;
         this.gener = gener;
+        this.image = image;
     }
 
     public String getId() {
@@ -55,5 +57,13 @@ public class Book {
 
     public void setGener(String gener) {
         this.gener = gener;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String gener) {
+        this.image = image;
     }
 }
