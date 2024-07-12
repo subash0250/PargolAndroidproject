@@ -36,8 +36,8 @@ public class splashscreen extends AppCompatActivity {
 
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String role = dataSnapshot.child("role").getValue(String.class);
-                            if (role != null && role.equals("admin")) {
-                                Intent intent = new Intent(splashscreen.this, AdminDashboardActivity.class);
+                            if (role != null && role.equals("Admin")) {
+                                Intent intent = new Intent(splashscreen.this, AdminDashboard.class);
                                 startActivity(intent);
                                 finish();
                             } else {

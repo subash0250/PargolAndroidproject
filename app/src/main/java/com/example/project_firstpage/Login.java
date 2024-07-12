@@ -97,8 +97,8 @@ public class Login extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 String role = dataSnapshot.child("role").getValue(String.class);
-                                if (role != null && role.equals("admin")) {
-                                    Intent k = new Intent(Login.this, AdminDashboardActivity.class);
+                                if (role != null && role.equals("Admin")) {
+                                    Intent k = new Intent(Login.this, AdminDashboard.class);
                                     startActivity(k);
                                     finish();
                                 } else {
