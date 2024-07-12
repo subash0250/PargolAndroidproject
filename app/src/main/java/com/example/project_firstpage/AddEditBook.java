@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AddEditBook extends AppCompatActivity {
 
     private EditText edtTitle, edtAuthor,edtlanguage,edtgener, edtimage;
+    private CheckBox checkboxAvailable;
     private Button btnSubmit;
     private DatabaseReference booksDatabase;
     private String bookId;
@@ -32,6 +33,8 @@ public class AddEditBook extends AppCompatActivity {
         edtlanguage = findViewById(R.id.languages);
         edtgener = findViewById(R.id.genere);
         edtimage = findViewById(R.id.image);
+        checkboxAvailable = findViewById(R.id.checkboxAvailable);
+
         btnSubmit = findViewById(R.id.btnSubmit);
 
         booksDatabase = FirebaseDatabase.getInstance().getReference("books");
@@ -52,23 +55,24 @@ public class AddEditBook extends AppCompatActivity {
                 String language = edtlanguage.getText().toString();
                 String gener = edtgener.getText().toString();
                 String image = edtimage.getText().toString();
+                boolean isAvailable = checkboxAvailable.isChecked();
                 if (TextUtils.isEmpty(title) || TextUtils.isEmpty(author) || TextUtils.isEmpty(language) || TextUtils.isEmpty(gener) ) {
                     Toast.makeText(AddEditBook.this, "All fields are required", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (bookId != null) {
-                    updateBook(title, author,language,gener, image);
+                    updateBook(title, author,language,gener, image, isAvailable);
                 } else {
-                    addBook(title, author,language,gener,image);
+                    addBook(title, author,language,gener,image, isAvailable);
                 }
             }
         });
     }
 
-    private void addBook(String title, String author,String language, String gener, String image) {
+    private void addBook(String title, String author,String language, String gener, String image, Boolean isAvailable) {
         String id = booksDatabase.push().getKey();
-        Book book = new Book(id, title, author,language,gener,image);
+        Book book = new Book(id, title, author,language,gener,image, isAvailable);
         booksDatabase.child(id).setValue(book).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(AddEditBook.this, "Book added", Toast.LENGTH_SHORT).show();
@@ -79,8 +83,8 @@ public class AddEditBook extends AppCompatActivity {
         });
     }
 
-    private void updateBook(String title, String author,String language, String gener, String image) {
-        Book book = new Book(bookId, title, author,language,gener, image);
+    private void updateBook(String title, String author, String language, String gener, String image, boolean isAvailable) {
+        Book book = new Book(bookId, title, author,language,gener, image, isAvailable);
         booksDatabase.child(bookId).setValue(book).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(AddEditBook.this, "Book updated", Toast.LENGTH_SHORT).show();

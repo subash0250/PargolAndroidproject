@@ -9,14 +9,16 @@ public class Book {
     private String language;
     private String gener;
     private  String image;
+    private Boolean isAvailable;
 
-    public Book(String id, String title, String author, String language, String gener, String image) {
+    public Book(String id, String title, String author, String language, String gener, String image, Boolean isAvailable) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.language = language;
         this.gener = gener;
         this.image = image;
+        this.isAvailable = isAvailable;
     }
 
     public String getId() {
@@ -65,5 +67,13 @@ public class Book {
 
     public void setImage(String gener) {
         this.image = image;
+    }
+
+    public Boolean getIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(String isAvailable) {
+        this.isAvailable = Boolean.valueOf(isAvailable);
     }
 }
