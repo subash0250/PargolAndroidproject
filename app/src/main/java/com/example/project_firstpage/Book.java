@@ -77,7 +77,7 @@ public class Book {
         return isAvailable;
     }
 
-    public void setIsAvailable(String isAvailable) {
-        this.isAvailable = Boolean.valueOf(isAvailable);
+    public void setIsAvailable(Boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 }
