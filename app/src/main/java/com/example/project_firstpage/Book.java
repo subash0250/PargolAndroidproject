@@ -11,6 +11,10 @@ public class Book {
     private  String image;
     private Boolean isAvailable;
 
+    public Book(){
+
+    }
+
     public Book(String id, String title, String author, String language, String gener, String image, Boolean isAvailable) {
         this.id = id;
         this.title = title;
