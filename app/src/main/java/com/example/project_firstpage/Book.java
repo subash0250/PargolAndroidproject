@@ -8,13 +8,21 @@ public class Book {
     private String author;
     private String language;
     private String gener;
+    private  String image;
+    private Boolean isAvailable;
 
-    public Book(String id, String title, String author, String language, String gener) {
+    public Book(){
+
+    }
+
+    public Book(String id, String title, String author, String language, String gener, String image, Boolean isAvailable) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.language = language;
         this.gener = gener;
+        this.image = image;
+        this.isAvailable = isAvailable;
     }
 
     public String getId() {
@@ -55,5 +63,21 @@ public class Book {
 
     public void setGener(String gener) {
         this.gener = gener;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String gener) {
+        this.image = image;
+    }
+
+    public Boolean getIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(Boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 }
