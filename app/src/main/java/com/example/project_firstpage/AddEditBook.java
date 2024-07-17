@@ -36,6 +36,7 @@ public class AddEditBook extends AppCompatActivity {
         checkboxAvailable = findViewById(R.id.checkboxAvailable);
 
         btnAdd = findViewById(R.id.btnAdd);
+        btnBack = findViewById(R.id.btnBack);
 
         booksDatabase = FirebaseDatabase.getInstance().getReference("books");
 
@@ -46,6 +47,13 @@ public class AddEditBook extends AppCompatActivity {
         } else {
             setTitle("Add Book");
         }
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
