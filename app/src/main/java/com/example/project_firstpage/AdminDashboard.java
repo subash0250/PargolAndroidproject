@@ -31,7 +31,7 @@ public class AdminDashboard extends AppCompatActivity {
 
     private DatabaseReference booksRef;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +39,7 @@ public class AdminDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_admin_dashboard);
 
         add_book_btn = findViewById(R.id.add_book_btn);
+
 
         booksRef = FirebaseDatabase.getInstance().getReference("books");
         bookListView = findViewById(R.id.bookListView);

@@ -1,10 +1,16 @@
 package com.example.project_firstpage;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -16,6 +22,7 @@ public class AdminBookAdapter extends BaseAdapter {
     private Context context;
     private List<Book> books;
     private DatabaseReference mBooksDatabase;
+    ImageButton edit_book_btn;
 
     public AdminBookAdapter(Context context, List<Book> books){
         this.context = context;
@@ -37,6 +44,7 @@ public class AdminBookAdapter extends BaseAdapter {
         return position;
     }
 
+    @SuppressLint("WrongViewCast")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
@@ -47,6 +55,16 @@ public class AdminBookAdapter extends BaseAdapter {
         TextView bookAuthor = convertView.findViewById(R.id.bookAuthor);
         bookTitle.setText(book.getTitle());
         bookAuthor.setText(book.getAuthor());
+
+        edit_book_btn = convertView.findViewById(R.id.editButton);
+                edit_book_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AddEditBook.class);
+                intent.putExtra("bookId", book.getId());
+                context.startActivity(intent);
+            }
+        });
         return convertView;
     }
 }
