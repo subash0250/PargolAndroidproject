@@ -56,11 +56,28 @@
         android:layout_height="wrap_content"
         android:text="Available"
         android:layout_marginBottom="16dp"/>
-
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:layout_gravity="center"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="@string/add"
+            android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+
 </LinearLayout>

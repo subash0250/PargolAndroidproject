@@ -18,7 +18,7 @@ public class AddEditBook extends AppCompatActivity {
 
     private EditText edtTitle, edtAuthor,edtlanguage,edtgener, edtimage;
     private CheckBox checkboxAvailable;
-    private Button btnSubmit;
+    private Button btnAdd, btnBack;
     private DatabaseReference booksDatabase;
     private String bookId;
 
@@ -35,7 +35,7 @@ public class AddEditBook extends AppCompatActivity {
         edtimage = findViewById(R.id.image);
         checkboxAvailable = findViewById(R.id.checkboxAvailable);
 
-        btnSubmit = findViewById(R.id.btnSubmit);
+        btnAdd = findViewById(R.id.btnAdd);
 
         booksDatabase = FirebaseDatabase.getInstance().getReference("books");
 
@@ -47,7 +47,7 @@ public class AddEditBook extends AppCompatActivity {
             setTitle("Add Book");
         }
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title = edtTitle.getText().toString();
