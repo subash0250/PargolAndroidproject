@@ -1,0 +1,50 @@
+# Gradle files
+.gradle/
+build/
+**/build/
+**/local.properties
+
+# Android Studio files
+.idea/
+*.iml
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# User-specific configuration files
+*.jks
+*.keystore
+
+# Android generated files
+captures/
+.externalNativeBuild/
+cxx/
+*.hprof
+*.apk
+*.ap_
+
+# Miscellaneous
+*.orig
+*.class
+*.jar
+*.war
+
+# Java-specific files
+*.class
+*.jar
+*.war
+*.ear
+
+# Other
+*.apk
+*.ap_
+*.dex
+*.so
+*.log
+
+# Kotlin files
+*.kotlin_module
