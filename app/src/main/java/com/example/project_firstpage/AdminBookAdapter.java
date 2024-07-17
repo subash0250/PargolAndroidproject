@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdminBookAdapter extends BaseAdapter {
@@ -41,7 +40,7 @@ public class AdminBookAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.book_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.admin_book_item, parent, false);
         }
         final Book book = books.get(position);
         TextView bookTitle = convertView.findViewById(R.id.bookTitle);
