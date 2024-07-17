@@ -22,7 +22,7 @@ public class AddEditBook extends AppCompatActivity {
 
     private EditText edtTitle, edtAuthor,edtlanguage,edtgener, edtimage;
     private CheckBox checkboxAvailable;
-    private Button btnAdd, btnBack;
+    private Button btnAddEdit, btnBack;
     private DatabaseReference booksDatabase;
     private String bookId;
 
@@ -39,7 +39,7 @@ public class AddEditBook extends AppCompatActivity {
         edtimage = findViewById(R.id.image);
         checkboxAvailable = findViewById(R.id.checkboxAvailable);
 
-        btnAdd = findViewById(R.id.btnAdd);
+        btnAddEdit = findViewById(R.id.btnAddEdit);
         btnBack = findViewById(R.id.btnBack);
 
         booksDatabase = FirebaseDatabase.getInstance().getReference("books");
@@ -47,7 +47,7 @@ public class AddEditBook extends AppCompatActivity {
         bookId = getIntent().getStringExtra("bookId");
         if (bookId != null) {
             setTitle("Edit Book");
-            btnAdd.setText("Edit");
+            btnAddEdit.setText("Edit");
             booksDatabase.child(bookId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -84,7 +84,7 @@ public class AddEditBook extends AppCompatActivity {
             }
         });
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        btnAddEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title = edtTitle.getText().toString();
