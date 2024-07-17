@@ -43,7 +43,7 @@ public class AddEditBook extends AppCompatActivity {
         bookId = getIntent().getStringExtra("bookId");
         if (bookId != null) {
             setTitle("Edit Book");
-            // Load book details and set to EditTexts (implementation not shown)
+            // Load book details and set to EditTexts ()
         } else {
             setTitle("Add Book");
         }
