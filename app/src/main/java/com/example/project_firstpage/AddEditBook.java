@@ -9,10 +9,14 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddEditBook extends AppCompatActivity {
 
@@ -43,6 +47,31 @@ public class AddEditBook extends AppCompatActivity {
         bookId = getIntent().getStringExtra("bookId");
         if (bookId != null) {
             setTitle("Edit Book");
+            btnAdd.setText("Edit");
+            booksDatabase.child(bookId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   if(snapshot.exists()){
+                       String title = snapshot.child("title").getValue(String.class);
+                       String author = snapshot.child("author").getValue(String.class);
+                       String language = snapshot.child("language").getValue(String.class);
+                       String gener = snapshot.child("gener").getValue(String.class);
+                       String image = snapshot.child("image").getValue(String.class);
+                       Boolean isAvailable = snapshot.child("isAvailable").getValue(Boolean.class);
+                       edtTitle.setText(title);
+                       edtAuthor.setText(author);
+                       edtlanguage.setText(language);
+                       edtgener.setText(gener);
+                       edtimage.setText(image);
+                       checkboxAvailable.setChecked(isAvailable != null && isAvailable);
+                   }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
             // Load book details and set to EditTexts ()
         } else {
             setTitle("Add Book");
