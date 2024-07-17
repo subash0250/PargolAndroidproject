@@ -9,16 +9,20 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddEditBook extends AppCompatActivity {
 
     private EditText edtTitle, edtAuthor,edtlanguage,edtgener, edtimage;
     private CheckBox checkboxAvailable;
-    private Button btnAdd, btnBack;
+    private Button btnAddEdit, btnBack;
     private DatabaseReference booksDatabase;
     private String bookId;
 
@@ -35,7 +39,7 @@ public class AddEditBook extends AppCompatActivity {
         edtimage = findViewById(R.id.image);
         checkboxAvailable = findViewById(R.id.checkboxAvailable);
 
-        btnAdd = findViewById(R.id.btnAdd);
+        btnAddEdit = findViewById(R.id.btnAddEdit);
         btnBack = findViewById(R.id.btnBack);
 
         booksDatabase = FirebaseDatabase.getInstance().getReference("books");
@@ -43,7 +47,32 @@ public class AddEditBook extends AppCompatActivity {
         bookId = getIntent().getStringExtra("bookId");
         if (bookId != null) {
             setTitle("Edit Book");
-            // Load book details and set to EditTexts (implementation not shown)
+            btnAddEdit.setText("Edit");
+            booksDatabase.child(bookId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                   if(snapshot.exists()){
+                       String title = snapshot.child("title").getValue(String.class);
+                       String author = snapshot.child("author").getValue(String.class);
+                       String language = snapshot.child("language").getValue(String.class);
+                       String gener = snapshot.child("gener").getValue(String.class);
+                       String image = snapshot.child("image").getValue(String.class);
+                       Boolean isAvailable = snapshot.child("isAvailable").getValue(Boolean.class);
+                       edtTitle.setText(title);
+                       edtAuthor.setText(author);
+                       edtlanguage.setText(language);
+                       edtgener.setText(gener);
+                       edtimage.setText(image);
+                       checkboxAvailable.setChecked(isAvailable != null && isAvailable);
+                   }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            // Load book details and set to EditTexts ()
         } else {
             setTitle("Add Book");
         }
@@ -55,7 +84,7 @@ public class AddEditBook extends AppCompatActivity {
             }
         });
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        btnAddEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title = edtTitle.getText().toString();
