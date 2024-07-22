@@ -22,7 +22,7 @@ public class AdminBookAdapter extends BaseAdapter {
     private Context context;
     private List<Book> books;
     private DatabaseReference mBooksDatabase;
-    ImageButton edit_book_btn;
+    ImageButton edit_book_btn, delete_book_btn;
 
     public AdminBookAdapter(Context context, List<Book> books){
         this.context = context;
@@ -61,6 +61,15 @@ public class AdminBookAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AddEditBook.class);
+                intent.putExtra("bookId", book.getId());
+                context.startActivity(intent);
+            }
+        });
+        delete_book_btn = convertView.findViewById(R.id.deleteButton);
+        delete_book_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DeleteBook.class);
                 intent.putExtra("bookId", book.getId());
                 context.startActivity(intent);
             }
