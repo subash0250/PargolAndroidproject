@@ -29,7 +29,7 @@ public class DeleteBook extends AppCompatActivity {
         cancel_delete_book_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // go back
+                finish();
             }
         });
 
