@@ -1,18 +1,65 @@
 package com.example.project_firstpage;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class DeleteBook extends AppCompatActivity {
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+public class DeleteBook extends AppCompatActivity {
+    Button confirm_delete_book_btn, cancel_delete_book_btn;
+    private DatabaseReference booksDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_book);
+        confirm_delete_book_btn = findViewById(R.id.confirm_delete_book_btn);
+        cancel_delete_book_btn = findViewById(R.id.cancel_delete_book_btn);
+
+        confirm_delete_book_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String bookId = getIntent().getStringExtra("bookId");
+                if (bookId != null) {
+                    DatabaseReference booksDatabase = FirebaseDatabase.getInstance().getReference("books").child(bookId);
+                   booksDatabase.removeValue()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(getApplicationContext(), "Book deleted successfully", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), "Failed to delete book: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            });
+                }
+            }
+        });
+
+
+        cancel_delete_book_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
     }
 }
