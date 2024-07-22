@@ -10,8 +10,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class DeleteBook extends AppCompatActivity {
     Button confirm_delete_book_btn, cancel_delete_book_btn;
+    private DatabaseReference booksDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +26,11 @@ public class DeleteBook extends AppCompatActivity {
         confirm_delete_book_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // delete book
+              String  bookId = getIntent().getStringExtra("bookId");
+              if(bookId != null){
+                  booksDatabase = FirebaseDatabase.getInstance().getReference("books");
+
+              }
             }
         });
 
