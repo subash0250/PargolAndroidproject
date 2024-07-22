@@ -105,6 +105,7 @@ public class AddEditBook extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void addBook(String title, String author,String language, String gener, String image, Boolean isAvailable) {
