@@ -43,7 +43,7 @@ public class Dashboard extends AppCompatActivity {
         // toolbar
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Event Planner");
+        toolbar.setTitle("Library");
         setSupportActionBar(toolbar);
 
         searchBookEditText = findViewById(R.id.searchBookEditText);
