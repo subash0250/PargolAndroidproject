@@ -196,7 +196,7 @@ public class Dashboard extends AppCompatActivity {
             fun_profile();
             return true;
         } else if (itemId == R.id.menu_about) {
-//            fun_about();
+            fun_about();
             return true;
         }else if (itemId == R.id.menu_sign_out) {
 //            fun_sign_out();
@@ -205,6 +205,11 @@ public class Dashboard extends AppCompatActivity {
         else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void fun_about() {
+        Intent intent = new Intent(Dashboard.this, About.class);
+        startActivity(intent);
     }
 
     private void fun_profile() {
