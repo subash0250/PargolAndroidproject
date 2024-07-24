@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,8 +46,9 @@ public class Dashboard extends AppCompatActivity {
         // toolbar
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Library");
+        toolbar.setTitle("Central Library");
         setSupportActionBar(toolbar);
+
 
         searchBookEditText = findViewById(R.id.searchBookEditText);
         searchBookButton = findViewById(R.id.searchBookButton);
@@ -83,6 +87,8 @@ public class Dashboard extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void loadBooks() {
         booksRef.addValueEventListener(new ValueEventListener() {
@@ -174,5 +180,31 @@ public class Dashboard extends AppCompatActivity {
         DatabaseReference userWishlistRef = FirebaseDatabase.getInstance().getReference("users").child("userId").child("wishlist");
         userWishlistRef.child(bookId).setValue(true);
         Toast.makeText(Dashboard.this, "Book added to wishlist", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.menu_profile) {
+//            profile();
+            return true;
+        } else if (itemId == R.id.menu_about) {
+//            about();
+            return true;
+        }else if (itemId == R.id.menu_sign_out) {
+//            signout();
+            return true;
+        }
+        else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
