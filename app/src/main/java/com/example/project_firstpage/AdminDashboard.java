@@ -44,6 +44,7 @@ public class AdminDashboard extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Central Library");
         setSupportActionBar(toolbar);
+        // finished
 
         add_book_btn = findViewById(R.id.add_book_btn);
 

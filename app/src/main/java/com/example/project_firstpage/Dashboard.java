@@ -47,7 +47,7 @@ public class Dashboard extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Central Library");
         setSupportActionBar(toolbar);
-
+        // finished
 
         searchBookEditText = findViewById(R.id.searchBookEditText);
         searchBookButton = findViewById(R.id.searchBookButton);
