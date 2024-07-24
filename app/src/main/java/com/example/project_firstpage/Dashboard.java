@@ -193,7 +193,7 @@ public class Dashboard extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == R.id.menu_profile) {
-//            fun_profile();
+            fun_profile();
             return true;
         } else if (itemId == R.id.menu_about) {
 //            fun_about();
@@ -205,5 +205,10 @@ public class Dashboard extends AppCompatActivity {
         else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void fun_profile() {
+        Intent intent = new Intent(Dashboard.this, Profile.class);
+        startActivity(intent);
     }
 }
