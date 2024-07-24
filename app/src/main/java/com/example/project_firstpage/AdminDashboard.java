@@ -108,13 +108,13 @@ public class AdminDashboard extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == R.id.menu_profile) {
-//            profile();
+//            fun_profile();
             return true;
         } else if (itemId == R.id.menu_about) {
-//            about();
+//            fun_about();
             return true;
         }else if (itemId == R.id.menu_sign_out) {
-//            signout();
+//            fun_sign_out();
             return true;
         }
         else {
