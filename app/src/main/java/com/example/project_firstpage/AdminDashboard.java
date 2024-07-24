@@ -122,6 +122,11 @@ public class AdminDashboard extends AppCompatActivity {
         }
     }
 
+    private void fun_sign_out() {
+        Intent intent = new Intent(AdminDashboard.this, SignOut.class);
+        startActivity(intent);
+    }
+
     private void fun_about() {
         Intent intent = new Intent(AdminDashboard.this, About.class);
         startActivity(intent);
