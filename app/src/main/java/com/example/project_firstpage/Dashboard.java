@@ -44,7 +44,6 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         // toolbar
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Central Library");
         setSupportActionBar(toolbar);
