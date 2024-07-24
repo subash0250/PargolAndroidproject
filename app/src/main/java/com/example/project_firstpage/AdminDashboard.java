@@ -108,17 +108,22 @@ public class AdminDashboard extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == R.id.menu_profile) {
-//            fun_profile();
+            fun_profile();
             return true;
         } else if (itemId == R.id.menu_about) {
-//            fun_about();
+            fun_about();
             return true;
         }else if (itemId == R.id.menu_sign_out) {
-//            fun_sign_out();
+            fun_sign_out();
             return true;
         }
         else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void fun_profile() {
+        Intent intent = new Intent(AdminDashboard.this, Profile.class);
+        startActivity(intent);
     }
 }
