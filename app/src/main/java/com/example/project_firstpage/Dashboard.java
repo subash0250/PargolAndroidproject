@@ -199,12 +199,17 @@ public class Dashboard extends AppCompatActivity {
             fun_about();
             return true;
         }else if (itemId == R.id.menu_sign_out) {
-//            fun_sign_out();
+            fun_sign_out();
             return true;
         }
         else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void fun_sign_out() {
+        Intent intent = new Intent(Dashboard.this, SignOut.class);
+        startActivity(intent);
     }
 
     private void fun_about() {
