@@ -39,6 +39,8 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        // toolbar 
+
         searchBookEditText = findViewById(R.id.searchBookEditText);
         searchBookButton = findViewById(R.id.searchBookButton);
         bookListView = findViewById(R.id.bookListView);
