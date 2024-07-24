@@ -1,5 +1,6 @@
 
 package com.example.project_firstpage;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -39,7 +40,11 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // toolbar hear
+        // toolbar
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Event Planner");
+        setSupportActionBar(toolbar);
 
         searchBookEditText = findViewById(R.id.searchBookEditText);
         searchBookButton = findViewById(R.id.searchBookButton);
