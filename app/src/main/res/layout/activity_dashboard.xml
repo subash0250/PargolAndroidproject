@@ -1,9 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-android:orientation="vertical"
+    android:orientation="vertical"
     tools:context=".Dashboard">
 
     <EditText
@@ -20,7 +20,6 @@ android:orientation="vertical"
         android:text="Search"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/searchBookEditText"
-
         android:layout_margin="16dp" />
 
     <ListView
@@ -32,4 +31,4 @@ android:orientation="vertical"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"/>
 
-</RelativeLayout>
+</LinearLayout>
