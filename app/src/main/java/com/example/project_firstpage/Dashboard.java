@@ -14,12 +14,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project_firstpage.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,18 +37,26 @@ import java.util.ArrayList;
 
 public class Dashboard extends AppCompatActivity {
 
-    private EditText searchBookEditText;
-    private Button searchBookButton;
+
     private ListView bookListView;
     private ArrayAdapter<String> bookAdapter;
     private ArrayList<String> bookList;
 
     private DatabaseReference booksRef;
+    FirebaseAuth mAuth;
+    private  String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null){
+            userId = user.getUid();
+        }
+
+
 
         // toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -49,9 +64,12 @@ public class Dashboard extends AppCompatActivity {
         setSupportActionBar(toolbar);
         // finished
 
-        searchBookEditText = findViewById(R.id.searchBookEditText);
-        searchBookButton = findViewById(R.id.searchBookButton);
+        //search box
+        SearchView searchView = findViewById(R.id.search_view);
+
+
         bookListView = findViewById(R.id.bookListView);
+
 
         bookList = new ArrayList<>();
         bookAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bookList);
@@ -61,27 +79,25 @@ public class Dashboard extends AppCompatActivity {
 
         loadBooks();
 
-        searchBookButton.setOnClickListener(new View.OnClickListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View v) {
-                String searchQuery = searchBookEditText.getText().toString().trim();
-                if (!TextUtils.isEmpty(searchQuery)) {
-                    searchBooks(searchQuery);
-                } else {
-                    Toast.makeText(Dashboard.this, "Please enter text to  search ", Toast.LENGTH_SHORT).show();
-                    Intent gotoprofile = new Intent(Dashboard.this, ProfilePage.class);
-                    startActivity(gotoprofile);
-                    finish();
-                }
+            public boolean onQueryTextSubmit(String query) {
+                searchBooks(query);
+                return true;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String query) {
+                searchBooks(query);
+                return true;
             }
         });
+
 
         bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedBook = bookList.get(position);
-
                 showBookDetails(selectedBook);
             }
         });
@@ -135,13 +151,15 @@ public class Dashboard extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
-                                String bookId = bookSnapshot.getKey();
+                                // String bookId = bookSnapshot.getKey();
                                 String author = bookSnapshot.child("author").getValue(String.class);
-                                boolean isAvailable = bookSnapshot.child("available").getValue(Boolean.class);
-
-                                // Display book details and provide options to borrow, return, add to wishlist
-                                // Show a dialog or another activity with these details and options
-                                showBookOptions(bookId, bookTitle, author, isAvailable);
+                                String gener = bookSnapshot.child("gener").getValue(String.class);
+                                String id = bookSnapshot.child("id").getValue(String.class);
+                                String image = bookSnapshot.child("image").getValue(String.class);
+                                boolean isAvailable = bookSnapshot.child("isAvailable").getValue(Boolean.class);
+                                String language = bookSnapshot.child("language").getValue(String.class);
+                                String title = bookSnapshot.child("title").getValue(String.class);
+                                showBookOptions(id, title, author, language, gener, image, isAvailable);
                             }
                         } else {
                             Toast.makeText(Dashboard.this, "Book details not found", Toast.LENGTH_SHORT).show();
@@ -154,31 +172,41 @@ public class Dashboard extends AppCompatActivity {
                     }
                 });
     }
-
-    private void showBookOptions(String bookId, String bookTitle, String author, boolean isAvailable) {
+    private void showBookOptions(String id, String title, String author, String language, String gener, String image, Boolean isAvailable) {
         // Show book details in a dialog or another activity and provide options to:
         // 1. Borrow the book
         // 2. Return the book
         // 3. Add the book to the wishlist
-
-        // Example: Borrow the book
         if (isAvailable) {
-            booksRef.child(bookId).child("available").setValue(false);
-            Toast.makeText(Dashboard.this, "Book borrowed successfully", Toast.LENGTH_SHORT).show();
+            booksRef.child(id).child("isAvailable").setValue(false);
+            Book book = new Book(id, title, author, language, gener, image, false);
+            DatabaseReference userBorrowRef = FirebaseDatabase.getInstance().getReference("borrow").child(userId).child(id);
+            userBorrowRef.setValue(book).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(Dashboard.this, "Book borrowed successfully", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(Dashboard.this, "Book borrow failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         } else {
             Toast.makeText(Dashboard.this, "Book is currently unavailable", Toast.LENGTH_SHORT).show();
         }
 
         // Example: Return the book
         if (!isAvailable) {
-            booksRef.child(bookId).child("available").setValue(true);
-            Toast.makeText(Dashboard.this, "Book returned successfully", Toast.LENGTH_SHORT).show();
+//            booksRef.child(bookId).child("isAvailable").setValue(true);
+//            Toast.makeText(Dashboard.this, "Book returned successfully", Toast.LENGTH_SHORT).show();
         }
 
         // Example: Add to wishlist
         DatabaseReference userWishlistRef = FirebaseDatabase.getInstance().getReference("users").child("userId").child("wishlist");
-        userWishlistRef.child(bookId).setValue(true);
-        Toast.makeText(Dashboard.this, "Book added to wishlist", Toast.LENGTH_SHORT).show();
+//        userWishlistRef.child(bookId).setValue(true);
+//        Toast.makeText(Dashboard.this, "Book added to wishlist", Toast.LENGTH_SHORT).show();
     }
 
     @Override
