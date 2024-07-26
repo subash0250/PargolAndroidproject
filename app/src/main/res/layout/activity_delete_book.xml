@@ -25,12 +25,14 @@
             android:id="@+id/confirm_delete_book_btn"
             android:text="Yes"
             android:layout_marginRight="20dp"
+            android:backgroundTint="@color/primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/cancel_delete_book_btn"
             android:text="No"
             android:layout_marginLeft="20dp"
+            android:backgroundTint="@color/primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
