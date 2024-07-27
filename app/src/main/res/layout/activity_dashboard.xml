@@ -16,7 +16,13 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-
+    <TextView
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:text="@string/welcome_to_central_library"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
