@@ -62,20 +62,11 @@ public class BookAdapter extends BaseAdapter {
         view_book_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, AddEditBook.class);
+                Intent intent = new Intent(context, ViewBook.class);
                 intent.putExtra("bookId", book.getId());
                 context.startActivity(intent);
             }
         });
-//        delete_book_btn = convertView.findViewById(R.id.deleteButton);
-//        delete_book_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, DeleteBook.class);
-//                intent.putExtra("bookId", book.getId());
-//                context.startActivity(intent);
-//            }
-//        });
         return convertView;
     }
 }
