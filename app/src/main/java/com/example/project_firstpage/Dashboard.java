@@ -47,7 +47,7 @@ public class Dashboard extends AppCompatActivity {
 //    private ArrayList<String> bookList;
 
     private List<Book> books;
-    private AdminBookAdapter adapter;
+    private BookAdapter adapter;
 
 
     private DatabaseReference booksRef;
@@ -84,7 +84,7 @@ public class Dashboard extends AppCompatActivity {
 //        bookListView.setAdapter(bookAdapter);
 
         books = new ArrayList<>();
-        adapter = new AdminBookAdapter(this, books);
+        adapter = new BookAdapter(this, books);
         bookListView.setAdapter(adapter);
 
         booksRef = FirebaseDatabase.getInstance().getReference("books");

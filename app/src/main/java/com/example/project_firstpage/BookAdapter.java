@@ -22,7 +22,7 @@ public class BookAdapter extends BaseAdapter {
     private Context context;
     private List<Book> books;
     private DatabaseReference mBooksDatabase;
-    ImageButton edit_book_btn, delete_book_btn;
+    ImageButton view_book_btn, delete_book_btn;
 
     public BookAdapter(Context context, List<Book> books){
         this.context = context;
@@ -48,16 +48,18 @@ public class BookAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.admin_book_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.user_book_item, parent, false);
         }
         final Book book = books.get(position);
         TextView bookTitle = convertView.findViewById(R.id.bookTitle);
         TextView bookAuthor = convertView.findViewById(R.id.bookAuthor);
+        TextView bookAvailability = convertView.findViewById(R.id.bookAvailability);
         bookTitle.setText(book.getTitle());
         bookAuthor.setText(book.getAuthor());
+        bookAvailability.setText(book.getIsAvailable() ? "Available" : "Unavailable");
 
-        edit_book_btn = convertView.findViewById(R.id.editButton);
-        edit_book_btn.setOnClickListener(new View.OnClickListener() {
+        view_book_btn = convertView.findViewById(R.id.viewButton);
+        view_book_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AddEditBook.class);
@@ -65,15 +67,15 @@ public class BookAdapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
-        delete_book_btn = convertView.findViewById(R.id.deleteButton);
-        delete_book_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, DeleteBook.class);
-                intent.putExtra("bookId", book.getId());
-                context.startActivity(intent);
-            }
-        });
+//        delete_book_btn = convertView.findViewById(R.id.deleteButton);
+//        delete_book_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, DeleteBook.class);
+//                intent.putExtra("bookId", book.getId());
+//                context.startActivity(intent);
+//            }
+//        });
         return convertView;
     }
 }
