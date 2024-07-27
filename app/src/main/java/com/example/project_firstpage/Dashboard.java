@@ -1,9 +1,12 @@
 
 package com.example.project_firstpage;
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,7 +44,7 @@ public class Dashboard extends AppCompatActivity {
 
     private ListView bookListView;
     //private ArrayAdapter<String> bookAdapter;
-    private ArrayList<String> bookList;
+//    private ArrayList<String> bookList;
 
     private List<Book> books;
     private AdminBookAdapter adapter;
@@ -103,13 +106,13 @@ public class Dashboard extends AppCompatActivity {
         });
 
 
-        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedBook = bookList.get(position);
-                showBookDetails(selectedBook);
-            }
-        });
+//        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                String selectedBook = bookList.get(position);
+//                showBookDetails(selectedBook);
+//            }
+//        });
     }
 
 
@@ -118,10 +121,21 @@ public class Dashboard extends AppCompatActivity {
         booksRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                bookList.clear();
-                for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
-                    String bookTitle = bookSnapshot.child("title").getValue(String.class);
-                    bookList.add(bookTitle);
+                books.clear();
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        try {
+                            Book book = snapshot.getValue(Book.class);
+                            if (book != null) {
+                                book.setId(snapshot.getKey());
+                                books.add(book);
+                            } else {
+                                Log.e(TAG, "Book is null for snapshot: " + snapshot);
+                            }
+                        } catch (Exception e) {
+                            Log.e(TAG, "Error retrieving book from snapshot: " + snapshot, e);
+                        }
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -129,6 +143,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(Dashboard.this, "Failed to load books", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Database error: " + databaseError.getMessage(), databaseError.toException());
             }
         });
     }
@@ -138,10 +153,21 @@ public class Dashboard extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        bookList.clear();
-                        for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
-                            String bookTitle = bookSnapshot.child("title").getValue(String.class);
-                            bookList.add(bookTitle);
+                        books.clear();
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                try {
+                                    Book book = snapshot.getValue(Book.class);
+                                    if (book != null) {
+                                        book.setId(snapshot.getKey());
+                                        books.add(book);
+                                    } else {
+                                        Log.e(TAG, "Book is null for snapshot: " + snapshot);
+                                    }
+                                } catch (Exception e) {
+                                    Log.e(TAG, "Error retrieving book from snapshot: " + snapshot, e);
+                                }
+                            }
                         }
                         adapter.notifyDataSetChanged();
                     }
