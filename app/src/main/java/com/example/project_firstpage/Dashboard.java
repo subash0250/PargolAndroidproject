@@ -151,7 +151,7 @@ public class Dashboard extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
-                                // String bookId = bookSnapshot.getKey();
+                               // String bookId = bookSnapshot.getKey();
                                 String author = bookSnapshot.child("author").getValue(String.class);
                                 String gener = bookSnapshot.child("gener").getValue(String.class);
                                 String id = bookSnapshot.child("id").getValue(String.class);
