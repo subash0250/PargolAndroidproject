@@ -16,27 +16,17 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <EditText
-        android:id="@+id/searchBookEditText"
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search books"
-        android:padding="16dp" />
-
-    <Button
-        android:id="@+id/searchBookButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/searchBookEditText"
-        android:layout_margin="16dp" />
-
+        android:iconifiedByDefault="true"
+        android:queryHint="Search books..."/>
     <ListView
         android:id="@+id/bookListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/searchBookButton"
         android:layout_marginTop="16dp"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"/>
