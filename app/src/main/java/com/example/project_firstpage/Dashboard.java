@@ -34,13 +34,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Dashboard extends AppCompatActivity {
 
 
     private ListView bookListView;
-    private ArrayAdapter<String> bookAdapter;
+    //private ArrayAdapter<String> bookAdapter;
     private ArrayList<String> bookList;
+
+    private List<Book> books;
+    private AdminBookAdapter adapter;
+
 
     private DatabaseReference booksRef;
     FirebaseAuth mAuth;
@@ -71,9 +76,13 @@ public class Dashboard extends AppCompatActivity {
         bookListView = findViewById(R.id.bookListView);
 
 
-        bookList = new ArrayList<>();
-        bookAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bookList);
-        bookListView.setAdapter(bookAdapter);
+//        bookList = new ArrayList<>();
+//        bookAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bookList);
+//        bookListView.setAdapter(bookAdapter);
+
+        books = new ArrayList<>();
+        adapter = new AdminBookAdapter(this, books);
+        bookListView.setAdapter(adapter);
 
         booksRef = FirebaseDatabase.getInstance().getReference("books");
 
@@ -114,7 +123,7 @@ public class Dashboard extends AppCompatActivity {
                     String bookTitle = bookSnapshot.child("title").getValue(String.class);
                     bookList.add(bookTitle);
                 }
-                bookAdapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -134,7 +143,7 @@ public class Dashboard extends AppCompatActivity {
                             String bookTitle = bookSnapshot.child("title").getValue(String.class);
                             bookList.add(bookTitle);
                         }
-                        bookAdapter.notifyDataSetChanged();
+                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -151,7 +160,7 @@ public class Dashboard extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
-                                // String bookId = bookSnapshot.getKey();
+                               // String bookId = bookSnapshot.getKey();
                                 String author = bookSnapshot.child("author").getValue(String.class);
                                 String gener = bookSnapshot.child("gener").getValue(String.class);
                                 String id = bookSnapshot.child("id").getValue(String.class);

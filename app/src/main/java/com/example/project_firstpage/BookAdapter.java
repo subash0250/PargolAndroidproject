@@ -1,93 +1,79 @@
 package com.example.project_firstpage;
 
+import static androidx.core.content.ContextCompat.startActivity;
 
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
-
-    private List<Book> bookList;
+public class BookAdapter extends BaseAdapter {
     private Context context;
-    private DatabaseReference booksDatabase;
+    private List<Book> books;
+    private DatabaseReference mBooksDatabase;
+    ImageButton edit_book_btn, delete_book_btn;
 
-    public BookAdapter(List<Book> bookList) {
-        this.bookList = bookList;
-        this.booksDatabase = FirebaseDatabase.getInstance().getReference("books");
+    public BookAdapter(Context context, List<Book> books){
+        this.context = context;
+        this.books = books;
+        mBooksDatabase = FirebaseDatabase.getInstance().getReference("books");
+    }
+    @Override
+    public int getCount() {
+        return books.size();
     }
 
-    @NonNull
     @Override
-    public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
-        View view = LayoutInflater.from(context).inflate(R.layout.admin_book_item, parent, false);
-        return new BookViewHolder(view);
+    public Object getItem(int position) {
+        return books.get(position);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        Book book = bookList.get(position);
-        holder.title.setText(book.getTitle());
-        holder.author.setText(book.getAuthor());
+    public long getItemId(int position) {
+        return position;
+    }
 
-        holder.editButton.setOnClickListener(new View.OnClickListener() {
+    @SuppressLint("WrongViewCast")
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.admin_book_item, parent, false);
+        }
+        final Book book = books.get(position);
+        TextView bookTitle = convertView.findViewById(R.id.bookTitle);
+        TextView bookAuthor = convertView.findViewById(R.id.bookAuthor);
+        bookTitle.setText(book.getTitle());
+        bookAuthor.setText(book.getAuthor());
+
+        edit_book_btn = convertView.findViewById(R.id.editButton);
+        edit_book_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(context, AddEditBook.class);
                 intent.putExtra("bookId", book.getId());
                 context.startActivity(intent);
             }
         });
-
-        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+        delete_book_btn = convertView.findViewById(R.id.deleteButton);
+        delete_book_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                booksDatabase.child(book.getId()).removeValue().addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(context, "Book deleted", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(context, "Failed to delete book", Toast.LENGTH_SHORT).show();
-                    }
-                });
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DeleteBook.class);
+                intent.putExtra("bookId", book.getId());
+                context.startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public int getItemCount() {
-        return bookList.size();
-    }
-
-    public void updateList(List<Book> newList) {
-        bookList = newList;
-        notifyDataSetChanged();
-    }
-
-    static class BookViewHolder extends RecyclerView.ViewHolder {
-        TextView title, author;
-        ImageButton editButton, deleteButton;
-
-        public BookViewHolder(@NonNull View itemView) {
-            super(itemView);
-            title = itemView.findViewById(R.id.bookTitle);
-            author = itemView.findViewById(R.id.bookAuthor);
-            editButton = itemView.findViewById(R.id.editButton);
-            deleteButton = itemView.findViewById(R.id.deleteButton);
-        }
+        return convertView;
     }
 }
-

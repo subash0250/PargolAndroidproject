@@ -1,0 +1,24 @@
+0000000000000000000000000000000000000000 8263bde91d69e5ef66379f535ead68d30db49d7c Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720806705 -0400	branch: Created from main
+8263bde91d69e5ef66379f535ead68d30db49d7c d71f1a6a3e66be12d93eef6b1049687ba5398f52 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720806773 -0400	commit: Worded on Admin Dash bord
+d71f1a6a3e66be12d93eef6b1049687ba5398f52 802aaf4250c2a6b0b91cc75844c6e4cabd60f9fe Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720807660 -0400	commit: worked on book add
+802aaf4250c2a6b0b91cc75844c6e4cabd60f9fe a32db1f6ea11dd2eb64107ed07cc39982ab0e270 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720808871 -0400	commit: worked on book avaiability
+a32db1f6ea11dd2eb64107ed07cc39982ab0e270 599bb6c1986dfef02d80562e9f083df690690673 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720890522 -0400	commit: worked on admin view
+599bb6c1986dfef02d80562e9f083df690690673 fc88a6f9424a9aabed3cc30d611d62e86966c0ab Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720891339 -0400	commit: worked on boo
+fc88a6f9424a9aabed3cc30d611d62e86966c0ab 08625ef963f268c9074b94dbb421f9ae98f3ba2d Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721246652 -0400	commit: Button change
+08625ef963f268c9074b94dbb421f9ae98f3ba2d 8643e7b7dc2154053fbdd0f378358e5687f476e4 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721247344 -0400	commit: Back button add
+8643e7b7dc2154053fbdd0f378358e5687f476e4 a0aff41228f3c3fd02ebbbdfbf7d0428c67f9f0a Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721248082 -0400	commit: git ignore add
+a0aff41228f3c3fd02ebbbdfbf7d0428c67f9f0a 4b429ebda110333da71f1d3b15da984a1550c057 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721248146 -0400	commit: git ignore check
+4b429ebda110333da71f1d3b15da984a1550c057 c0bc48d9c3ea636c006043d8b9fdfb04b7ec445c Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721254384 -0400	commit: work on admin list view
+c0bc48d9c3ea636c006043d8b9fdfb04b7ec445c b733f3e875bdebff6f2e3fa9e2d14fc208838818 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721255440 -0400	commit: work on book edit
+b733f3e875bdebff6f2e3fa9e2d14fc208838818 cfb630f510ee812a567396f884adae51ae1266fe Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721256982 -0400	commit: work on book edit form
+cfb630f510ee812a567396f884adae51ae1266fe c63da6a91317b5163513cb5895d84f5f471c2aec Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721257357 -0400	commit: finished book edit
+c63da6a91317b5163513cb5895d84f5f471c2aec a34a92d2b0f19bc73aa03144cdfec6b9686900b5 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721690904 -0400	commit: book delete button add
+a34a92d2b0f19bc73aa03144cdfec6b9686900b5 b3c95a1466a2df07d05cce5d2be51ea578d076a2 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721691021 -0400	commit: book delete page add
+b3c95a1466a2df07d05cce5d2be51ea578d076a2 4a0625354513347abf96bdb5a8b0a6b6ecc81429 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721691666 -0400	commit: Work on book delete view
+4a0625354513347abf96bdb5a8b0a6b6ecc81429 b42ae3f3f35a3a878cd05330846ac65c63121186 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721691845 -0400	commit: Work on book dlete confirm and cancel button
+b42ae3f3f35a3a878cd05330846ac65c63121186 2b97e56230764b3c6e369d74681adec15468faca Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721691952 -0400	commit: Book delete cancel button done
+2b97e56230764b3c6e369d74681adec15468faca 56206889388ec11ab08161c95bd604d34006ed14 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721692133 -0400	commit: Firebase book db connect to delete book
+56206889388ec11ab08161c95bd604d34006ed14 6b02bddab24bd8ac8fb83a02515922350287eaca Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721692387 -0400	commit: Admin book delete done
+6b02bddab24bd8ac8fb83a02515922350287eaca d4c25cc51d1c98ed3c5214bee62633a49f5d6205 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721836224 -0400	commit: Admin book delete finish
+d4c25cc51d1c98ed3c5214bee62633a49f5d6205 274dade9d47c9c678e85904fd160c5de478ef544 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721836342 -0400	commit: Admin book delete finished
+274dade9d47c9c678e85904fd160c5de478ef544 3f02edc78bfe510c3568ec883e756d734bd94ad8 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721836544 -0400	commit: Admin book delete finished.

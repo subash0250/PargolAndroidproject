@@ -1,0 +1,57 @@
+0000000000000000000000000000000000000000 1963f52a115ef7629f3b2c4e2847eb21a84bb867 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720637062 -0400	clone: from https://github.com/subash0250/PargolAndroidproject.git
+1963f52a115ef7629f3b2c4e2847eb21a84bb867 8263bde91d69e5ef66379f535ead68d30db49d7c Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720637135 -0400	commit: Worked on dashbord
+8263bde91d69e5ef66379f535ead68d30db49d7c 8263bde91d69e5ef66379f535ead68d30db49d7c Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720806727 -0400	checkout: moving from main to AdminDashbord
+8263bde91d69e5ef66379f535ead68d30db49d7c d71f1a6a3e66be12d93eef6b1049687ba5398f52 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720806773 -0400	commit: Worded on Admin Dash bord
+d71f1a6a3e66be12d93eef6b1049687ba5398f52 802aaf4250c2a6b0b91cc75844c6e4cabd60f9fe Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720807660 -0400	commit: worked on book add
+802aaf4250c2a6b0b91cc75844c6e4cabd60f9fe a32db1f6ea11dd2eb64107ed07cc39982ab0e270 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720808871 -0400	commit: worked on book avaiability
+a32db1f6ea11dd2eb64107ed07cc39982ab0e270 599bb6c1986dfef02d80562e9f083df690690673 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720890522 -0400	commit: worked on admin view
+599bb6c1986dfef02d80562e9f083df690690673 fc88a6f9424a9aabed3cc30d611d62e86966c0ab Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1720891339 -0400	commit: worked on boo
+fc88a6f9424a9aabed3cc30d611d62e86966c0ab 08625ef963f268c9074b94dbb421f9ae98f3ba2d Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721246652 -0400	commit: Button change
+08625ef963f268c9074b94dbb421f9ae98f3ba2d 8643e7b7dc2154053fbdd0f378358e5687f476e4 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721247344 -0400	commit: Back button add
+8643e7b7dc2154053fbdd0f378358e5687f476e4 a0aff41228f3c3fd02ebbbdfbf7d0428c67f9f0a Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721248082 -0400	commit: git ignore add
+a0aff41228f3c3fd02ebbbdfbf7d0428c67f9f0a 4b429ebda110333da71f1d3b15da984a1550c057 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721248146 -0400	commit: git ignore check
+4b429ebda110333da71f1d3b15da984a1550c057 c0bc48d9c3ea636c006043d8b9fdfb04b7ec445c Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721254384 -0400	commit: work on admin list view
+c0bc48d9c3ea636c006043d8b9fdfb04b7ec445c b733f3e875bdebff6f2e3fa9e2d14fc208838818 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721255440 -0400	commit: work on book edit
+b733f3e875bdebff6f2e3fa9e2d14fc208838818 cfb630f510ee812a567396f884adae51ae1266fe Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721256982 -0400	commit: work on book edit form
+cfb630f510ee812a567396f884adae51ae1266fe c63da6a91317b5163513cb5895d84f5f471c2aec Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721257357 -0400	commit: finished book edit
+c63da6a91317b5163513cb5895d84f5f471c2aec a34a92d2b0f19bc73aa03144cdfec6b9686900b5 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721690904 -0400	commit: book delete button add
+a34a92d2b0f19bc73aa03144cdfec6b9686900b5 b3c95a1466a2df07d05cce5d2be51ea578d076a2 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721691021 -0400	commit: book delete page add
+b3c95a1466a2df07d05cce5d2be51ea578d076a2 4a0625354513347abf96bdb5a8b0a6b6ecc81429 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721691666 -0400	commit: Work on book delete view
+4a0625354513347abf96bdb5a8b0a6b6ecc81429 b42ae3f3f35a3a878cd05330846ac65c63121186 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721691845 -0400	commit: Work on book dlete confirm and cancel button
+b42ae3f3f35a3a878cd05330846ac65c63121186 2b97e56230764b3c6e369d74681adec15468faca Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721691952 -0400	commit: Book delete cancel button done
+2b97e56230764b3c6e369d74681adec15468faca 56206889388ec11ab08161c95bd604d34006ed14 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721692133 -0400	commit: Firebase book db connect to delete book
+56206889388ec11ab08161c95bd604d34006ed14 6b02bddab24bd8ac8fb83a02515922350287eaca Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721692387 -0400	commit: Admin book delete done
+6b02bddab24bd8ac8fb83a02515922350287eaca d4c25cc51d1c98ed3c5214bee62633a49f5d6205 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721836224 -0400	commit: Admin book delete finish
+d4c25cc51d1c98ed3c5214bee62633a49f5d6205 274dade9d47c9c678e85904fd160c5de478ef544 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721836342 -0400	commit: Admin book delete finished
+274dade9d47c9c678e85904fd160c5de478ef544 3f02edc78bfe510c3568ec883e756d734bd94ad8 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721836544 -0400	commit: Admin book delete finished.
+3f02edc78bfe510c3568ec883e756d734bd94ad8 3f02edc78bfe510c3568ec883e756d734bd94ad8 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721836709 -0400	checkout: moving from AdminDashbord to Toolbar
+3f02edc78bfe510c3568ec883e756d734bd94ad8 9b8b9b86e085302ac9617d6e52459e294e003368 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721836757 -0400	commit: Start toolbar menu
+9b8b9b86e085302ac9617d6e52459e294e003368 e72c34663461944d4617c07985e3b371f356636b Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721837162 -0400	commit: tollbar add
+e72c34663461944d4617c07985e3b371f356636b ecb1a0e7a62f0f179080aa6b80638419be3229cf Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721837345 -0400	commit: tollbar menu add
+ecb1a0e7a62f0f179080aa6b80638419be3229cf c87fb1fce28c456e936b17cf5a67fbfee9ffe5d5 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721838433 -0400	commit: status bar color change
+c87fb1fce28c456e936b17cf5a67fbfee9ffe5d5 59417ad36606b44c711182524c080a7395379a27 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721838649 -0400	commit: add toolbar to admin
+59417ad36606b44c711182524c080a7395379a27 975d9ba20f15f5c3e7a745304335656715e4025d Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721838852 -0400	commit: add toolbar to admin-xml
+975d9ba20f15f5c3e7a745304335656715e4025d ff3b932be447bcc797af7d236b67141f44aa3393 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839124 -0400	commit: add profile pade
+ff3b932be447bcc797af7d236b67141f44aa3393 503f7bf96ce1a73b25c53ce5107865b221d06a4b Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839169 -0400	commit: add about page
+503f7bf96ce1a73b25c53ce5107865b221d06a4b e195d270615f72ddebae54772c7130f808f0564a Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839224 -0400	commit: add sign out page
+e195d270615f72ddebae54772c7130f808f0564a 03fc86f04add427c56fd6221c751cecc24be3a63 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839432 -0400	commit: admin menu link to profile page
+03fc86f04add427c56fd6221c751cecc24be3a63 ff97c875bc55d28cad2a2d0cf372da106c9552ad Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839480 -0400	commit: admin menu link to about page
+ff97c875bc55d28cad2a2d0cf372da106c9552ad 3810cec8a9b66b70e800819bdbdd37f7e2133198 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839512 -0400	commit: admin menu link to sign out page
+3810cec8a9b66b70e800819bdbdd37f7e2133198 a2495f391146984f70fcee794420ad2cbb59c488 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839633 -0400	commit: client menu link to profile page
+a2495f391146984f70fcee794420ad2cbb59c488 062b430259b9665a57676d222308100bfd2fa50a Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839674 -0400	commit: client menu link to about page
+062b430259b9665a57676d222308100bfd2fa50a 5cfae373fa0349fd67a2451c31d0eca75bd609fa Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839721 -0400	commit: client menu link to sign out page
+5cfae373fa0349fd67a2451c31d0eca75bd609fa ffaebd0c7e6a55bdcde597b0c64d66ef387660f7 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839803 -0400	commit: toolbar for client and admin done
+ffaebd0c7e6a55bdcde597b0c64d66ef387660f7 ffaebd0c7e6a55bdcde597b0c64d66ef387660f7 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721845774 -0400	checkout: moving from Toolbar to signout
+ffaebd0c7e6a55bdcde597b0c64d66ef387660f7 3d12dcea21d2997b120da0aab3b13492291845a0 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721846334 -0400	commit: Sign out view done
+3d12dcea21d2997b120da0aab3b13492291845a0 1b4779dfa3e45d05de302ebb3e822d25702eb4bc Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721934438 -0400	commit: Sign out done
+1b4779dfa3e45d05de302ebb3e822d25702eb4bc 1b4779dfa3e45d05de302ebb3e822d25702eb4bc Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1722015191 -0400	checkout: moving from signout to userdashbord
+1b4779dfa3e45d05de302ebb3e822d25702eb4bc 1b4779dfa3e45d05de302ebb3e822d25702eb4bc Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1722015407 -0400	checkout: moving from userdashbord to signout
+1b4779dfa3e45d05de302ebb3e822d25702eb4bc 1b4779dfa3e45d05de302ebb3e822d25702eb4bc Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1722015771 -0400	checkout: moving from signout to userdashbord
+1b4779dfa3e45d05de302ebb3e822d25702eb4bc 839329cd0661b64510ab1c8ecf2fd41bc8e14f81 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1722015930 -0400	commit: work on book borrow
+839329cd0661b64510ab1c8ecf2fd41bc8e14f81 8923a8b6efe2cbb4b78860f00887a2e65263e522 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1722020991 -0400	commit: Work on about page
+8923a8b6efe2cbb4b78860f00887a2e65263e522 56259746cf04c5e1346737cb7a06f46ef2a1ae02 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1722021129 -0400	commit: Work on sign out page
+56259746cf04c5e1346737cb7a06f46ef2a1ae02 fd78d0da46f2cc56684d1e831aaadc89a9f37e41 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1722021422 -0400	commit: change search input
+fd78d0da46f2cc56684d1e831aaadc89a9f37e41 cf53edee30c10818c74b43ec83b97d92117e9cf1 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1722021558 -0400	commit: user profile details add
+cf53edee30c10818c74b43ec83b97d92117e9cf1 355a5a52a0006380008a79e8ed65e95b9473d76e Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1722021933 -0400	commit: book delete ui change
+355a5a52a0006380008a79e8ed65e95b9473d76e 19030ab6a772726ea534965da6e507a5031c17dc Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1722022072 -0400	commit: book edit ui change
+19030ab6a772726ea534965da6e507a5031c17dc 5c99dc82246e5fb48113610d01611775c83e4f65 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1722097942 -0400	commit: work on userdashbord page
