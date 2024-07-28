@@ -1,10 +1,13 @@
 package com.example.project_firstpage;
 
 import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -19,10 +22,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class ViewBook extends AppCompatActivity {
-    private TextView tvTitle, tvAuthor,tvlanguage,tvgener, tvimage, tvavailability;
-//    private Button btnAddEdit, btnBack;
+    private TextView tvTitle, tvAuthor,tvlanguage,tvgener, tvavailability;
+    private ImageView ivimage;
+    private Button  btnBack;
     private DatabaseReference booksDatabase;
     private String bookId;
 
@@ -31,17 +36,16 @@ public class ViewBook extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_book);
+        btnBack = findViewById(R.id.btnBack);
         tvTitle = findViewById(R.id.Title);
         tvAuthor = findViewById(R.id.Author);
         tvlanguage = findViewById(R.id.Language);
         tvgener = findViewById(R.id.Genere);
-        tvimage = findViewById(R.id.Image);
+        ivimage = findViewById(R.id.Image);
         tvavailability = findViewById(R.id.Availability);
         booksDatabase = FirebaseDatabase.getInstance().getReference("books");
         bookId = getIntent().getStringExtra("bookId");
         if (bookId != null) {
-//            setTitle("Edit Book");
-//            btnAddEdit.setText("Edit");
             booksDatabase.child(bookId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @SuppressLint("SetTextI18n")
                 @Override
@@ -57,7 +61,10 @@ public class ViewBook extends AppCompatActivity {
                         tvAuthor.setText("Author: " + author);
                         tvlanguage.setText("Language: "+ language);
                         tvgener.setText("Gener: " + gener);
-                        tvimage.setText(image);
+                        ivimage.setImageURI(Uri.parse(image));
+                        Picasso.get()
+                                .load(image)
+                                .into(ivimage);
                         tvavailability.setText(Boolean.TRUE.equals(isAvailable) ? "Availability: Yes" : "Availability: No");
                     }
                 }
@@ -68,8 +75,13 @@ public class ViewBook extends AppCompatActivity {
                 }
             });
         } else {
-//            setTitle("Add Book");
             // can't find book
         }
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }
