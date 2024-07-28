@@ -18,6 +18,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,9 +34,11 @@ public class ViewBook extends AppCompatActivity {
     private TextView tvTitle, tvAuthor,tvlanguage,tvgener, tvavailability;
     private ImageView ivimage;
     private Button  btnBack, btnBorrow;
-    private DatabaseReference booksDatabase;
     private String bookId, title, author, language, gener, image ;
     private Boolean isAvailable;
+    private DatabaseReference booksRef;
+    FirebaseAuth mAuth;
+    private  String userId;
 
 
     @SuppressLint("MissingInflatedId")
@@ -39,6 +46,11 @@ public class ViewBook extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_book);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null){
+            userId = user.getUid();
+        }
         btnBack = findViewById(R.id.btnBack);
         btnBorrow = findViewById(R.id.btnBorrow);
         tvTitle = findViewById(R.id.Title);
@@ -47,10 +59,11 @@ public class ViewBook extends AppCompatActivity {
         tvgener = findViewById(R.id.Genere);
         ivimage = findViewById(R.id.Image);
         tvavailability = findViewById(R.id.Availability);
-        booksDatabase = FirebaseDatabase.getInstance().getReference("books");
+        //booksDatabase = FirebaseDatabase.getInstance().getReference("books");
+        booksRef = FirebaseDatabase.getInstance().getReference("books");
         bookId = getIntent().getStringExtra("bookId");
         if (bookId != null) {
-            booksDatabase.child(bookId).addListenerForSingleValueEvent(new ValueEventListener() {
+            booksRef.child(bookId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @SuppressLint("SetTextI18n")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -91,10 +104,27 @@ public class ViewBook extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(isAvailable){
-                    Toast.makeText(ViewBook.this, "yes", Toast.LENGTH_SHORT).show();
+                    showBookOptions(bookId, title, author, language, gener, image, isAvailable);
                 }else {
                     Toast.makeText(ViewBook.this, "This book not available, Try again later.", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    private void showBookOptions(String bookId, String title, String author, String language, String gener, String image, Boolean isAvailable) {
+        booksRef.child(bookId).child("isAvailable").setValue(false);
+        Book book = new Book(bookId, title, author, language, gener, image, false);
+        DatabaseReference borrowRef = FirebaseDatabase.getInstance().getReference("borrow").child(userId).child(bookId);
+        borrowRef.setValue(book).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(ViewBook.this, "Book borrowed successfully", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ViewBook.this, "Book borrow failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
