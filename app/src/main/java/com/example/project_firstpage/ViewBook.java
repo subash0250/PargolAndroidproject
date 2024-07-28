@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -27,9 +28,11 @@ import com.squareup.picasso.Picasso;
 public class ViewBook extends AppCompatActivity {
     private TextView tvTitle, tvAuthor,tvlanguage,tvgener, tvavailability;
     private ImageView ivimage;
-    private Button  btnBack;
+    private Button  btnBack, btnBorrow;
     private DatabaseReference booksDatabase;
-    private String bookId;
+    private String bookId, title, author, language, gener, image ;
+    private Boolean isAvailable;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,6 +40,7 @@ public class ViewBook extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_book);
         btnBack = findViewById(R.id.btnBack);
+        btnBorrow = findViewById(R.id.btnBorrow);
         tvTitle = findViewById(R.id.Title);
         tvAuthor = findViewById(R.id.Author);
         tvlanguage = findViewById(R.id.Language);
@@ -51,12 +55,12 @@ public class ViewBook extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.exists()){
-                        String title = snapshot.child("title").getValue(String.class);
-                        String author = snapshot.child("author").getValue(String.class);
-                        String language = snapshot.child("language").getValue(String.class);
-                        String gener = snapshot.child("gener").getValue(String.class);
-                        String image = snapshot.child("image").getValue(String.class);
-                        Boolean isAvailable = snapshot.child("isAvailable").getValue(Boolean.class);
+                        title = snapshot.child("title").getValue(String.class);
+                        author = snapshot.child("author").getValue(String.class);
+                        language = snapshot.child("language").getValue(String.class);
+                        gener = snapshot.child("gener").getValue(String.class);
+                        image = snapshot.child("image").getValue(String.class);
+                        isAvailable = snapshot.child("isAvailable").getValue(Boolean.class);
                         tvTitle.setText("Title: " + title);
                         tvAuthor.setText("Author: " + author);
                         tvlanguage.setText("Language: "+ language);
@@ -81,6 +85,16 @@ public class ViewBook extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        btnBorrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isAvailable){
+                    Toast.makeText(ViewBook.this, "yes", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(ViewBook.this, "This book not available, Try again later.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
