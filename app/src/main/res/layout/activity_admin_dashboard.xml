@@ -9,6 +9,8 @@
     android:padding="0dp"
     tools:context=".AdminDashboard">
 
+
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:textAlignment="center"
