@@ -34,7 +34,7 @@ public class SignOut extends AppCompatActivity {
         button_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAuth.signOut();
+               mAuth.signOut();
                 Toast.makeText(SignOut.this, "Successfully Logout.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(SignOut.this, Login.class);
                 startActivity(intent);

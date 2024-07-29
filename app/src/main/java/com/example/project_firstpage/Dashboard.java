@@ -1,9 +1,12 @@
 
 package com.example.project_firstpage;
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,13 +37,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Dashboard extends AppCompatActivity {
 
 
     private ListView bookListView;
-    private ArrayAdapter<String> bookAdapter;
-    private ArrayList<String> bookList;
+    //private ArrayAdapter<String> bookAdapter;
+//    private ArrayList<String> bookList;
+
+    private List<Book> books;
+    private BookAdapter adapter;
+
 
     private DatabaseReference booksRef;
     FirebaseAuth mAuth;
@@ -71,9 +79,13 @@ public class Dashboard extends AppCompatActivity {
         bookListView = findViewById(R.id.bookListView);
 
 
-        bookList = new ArrayList<>();
-        bookAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bookList);
-        bookListView.setAdapter(bookAdapter);
+//        bookList = new ArrayList<>();
+//        bookAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bookList);
+//        bookListView.setAdapter(bookAdapter);
+
+        books = new ArrayList<>();
+        adapter = new BookAdapter(this, books);
+        bookListView.setAdapter(adapter);
 
         booksRef = FirebaseDatabase.getInstance().getReference("books");
 
@@ -92,15 +104,6 @@ public class Dashboard extends AppCompatActivity {
                 return true;
             }
         });
-
-
-        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedBook = bookList.get(position);
-                showBookDetails(selectedBook);
-            }
-        });
     }
 
 
@@ -109,17 +112,29 @@ public class Dashboard extends AppCompatActivity {
         booksRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                bookList.clear();
-                for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
-                    String bookTitle = bookSnapshot.child("title").getValue(String.class);
-                    bookList.add(bookTitle);
+                books.clear();
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        try {
+                            Book book = snapshot.getValue(Book.class);
+                            if (book != null) {
+                                book.setId(snapshot.getKey());
+                                books.add(book);
+                            } else {
+                                Log.e(TAG, "Book is null for snapshot: " + snapshot);
+                            }
+                        } catch (Exception e) {
+                            Log.e(TAG, "Error retrieving book from snapshot: " + snapshot, e);
+                        }
+                    }
                 }
-                bookAdapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(Dashboard.this, "Failed to load books", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Database error: " + databaseError.getMessage(), databaseError.toException());
             }
         });
     }
@@ -129,12 +144,23 @@ public class Dashboard extends AppCompatActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        bookList.clear();
-                        for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
-                            String bookTitle = bookSnapshot.child("title").getValue(String.class);
-                            bookList.add(bookTitle);
+                        books.clear();
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                try {
+                                    Book book = snapshot.getValue(Book.class);
+                                    if (book != null) {
+                                        book.setId(snapshot.getKey());
+                                        books.add(book);
+                                    } else {
+                                        Log.e(TAG, "Book is null for snapshot: " + snapshot);
+                                    }
+                                } catch (Exception e) {
+                                    Log.e(TAG, "Error retrieving book from snapshot: " + snapshot, e);
+                                }
+                            }
                         }
-                        bookAdapter.notifyDataSetChanged();
+                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -144,70 +170,7 @@ public class Dashboard extends AppCompatActivity {
                 });
     }
 
-    private void showBookDetails(String bookTitle) {
-        booksRef.orderByChild("title").equalTo(bookTitle)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            for (DataSnapshot bookSnapshot : dataSnapshot.getChildren()) {
-                                // String bookId = bookSnapshot.getKey();
-                                String author = bookSnapshot.child("author").getValue(String.class);
-                                String gener = bookSnapshot.child("gener").getValue(String.class);
-                                String id = bookSnapshot.child("id").getValue(String.class);
-                                String image = bookSnapshot.child("image").getValue(String.class);
-                                boolean isAvailable = bookSnapshot.child("isAvailable").getValue(Boolean.class);
-                                String language = bookSnapshot.child("language").getValue(String.class);
-                                String title = bookSnapshot.child("title").getValue(String.class);
-                                showBookOptions(id, title, author, language, gener, image, isAvailable);
-                            }
-                        } else {
-                            Toast.makeText(Dashboard.this, "Book details not found", Toast.LENGTH_SHORT).show();
-                        }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(Dashboard.this, "Failed to retrieve book details", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-    private void showBookOptions(String id, String title, String author, String language, String gener, String image, Boolean isAvailable) {
-        // Show book details in a dialog or another activity and provide options to:
-        // 1. Borrow the book
-        // 2. Return the book
-        // 3. Add the book to the wishlist
-        if (isAvailable) {
-            booksRef.child(id).child("isAvailable").setValue(false);
-            Book book = new Book(id, title, author, language, gener, image, false);
-            DatabaseReference userBorrowRef = FirebaseDatabase.getInstance().getReference("borrow").child(userId).child(id);
-            userBorrowRef.setValue(book).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    Toast.makeText(Dashboard.this, "Book borrowed successfully", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(Dashboard.this, "Book borrow failed", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-        } else {
-            Toast.makeText(Dashboard.this, "Book is currently unavailable", Toast.LENGTH_SHORT).show();
-        }
-
-        // Example: Return the book
-        if (!isAvailable) {
-//            booksRef.child(bookId).child("isAvailable").setValue(true);
-//            Toast.makeText(Dashboard.this, "Book returned successfully", Toast.LENGTH_SHORT).show();
-        }
-
-        // Example: Add to wishlist
-        DatabaseReference userWishlistRef = FirebaseDatabase.getInstance().getReference("users").child("userId").child("wishlist");
-//        userWishlistRef.child(bookId).setValue(true);
-//        Toast.makeText(Dashboard.this, "Book added to wishlist", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

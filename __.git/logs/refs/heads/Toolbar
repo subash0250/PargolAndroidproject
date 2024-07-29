@@ -1,0 +1,17 @@
+0000000000000000000000000000000000000000 3f02edc78bfe510c3568ec883e756d734bd94ad8 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721836696 -0400	branch: Created from AdminDashbord
+3f02edc78bfe510c3568ec883e756d734bd94ad8 9b8b9b86e085302ac9617d6e52459e294e003368 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721836757 -0400	commit: Start toolbar menu
+9b8b9b86e085302ac9617d6e52459e294e003368 e72c34663461944d4617c07985e3b371f356636b Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721837162 -0400	commit: tollbar add
+e72c34663461944d4617c07985e3b371f356636b ecb1a0e7a62f0f179080aa6b80638419be3229cf Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721837345 -0400	commit: tollbar menu add
+ecb1a0e7a62f0f179080aa6b80638419be3229cf c87fb1fce28c456e936b17cf5a67fbfee9ffe5d5 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721838433 -0400	commit: status bar color change
+c87fb1fce28c456e936b17cf5a67fbfee9ffe5d5 59417ad36606b44c711182524c080a7395379a27 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721838649 -0400	commit: add toolbar to admin
+59417ad36606b44c711182524c080a7395379a27 975d9ba20f15f5c3e7a745304335656715e4025d Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721838852 -0400	commit: add toolbar to admin-xml
+975d9ba20f15f5c3e7a745304335656715e4025d ff3b932be447bcc797af7d236b67141f44aa3393 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839124 -0400	commit: add profile pade
+ff3b932be447bcc797af7d236b67141f44aa3393 503f7bf96ce1a73b25c53ce5107865b221d06a4b Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839169 -0400	commit: add about page
+503f7bf96ce1a73b25c53ce5107865b221d06a4b e195d270615f72ddebae54772c7130f808f0564a Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839224 -0400	commit: add sign out page
+e195d270615f72ddebae54772c7130f808f0564a 03fc86f04add427c56fd6221c751cecc24be3a63 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839432 -0400	commit: admin menu link to profile page
+03fc86f04add427c56fd6221c751cecc24be3a63 ff97c875bc55d28cad2a2d0cf372da106c9552ad Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839480 -0400	commit: admin menu link to about page
+ff97c875bc55d28cad2a2d0cf372da106c9552ad 3810cec8a9b66b70e800819bdbdd37f7e2133198 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839512 -0400	commit: admin menu link to sign out page
+3810cec8a9b66b70e800819bdbdd37f7e2133198 a2495f391146984f70fcee794420ad2cbb59c488 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839633 -0400	commit: client menu link to profile page
+a2495f391146984f70fcee794420ad2cbb59c488 062b430259b9665a57676d222308100bfd2fa50a Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839674 -0400	commit: client menu link to about page
+062b430259b9665a57676d222308100bfd2fa50a 5cfae373fa0349fd67a2451c31d0eca75bd609fa Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839721 -0400	commit: client menu link to sign out page
+5cfae373fa0349fd67a2451c31d0eca75bd609fa ffaebd0c7e6a55bdcde597b0c64d66ef387660f7 Subash Gaddam <subashgaddam@Subashs-Laptop.local> 1721839803 -0400	commit: toolbar for client and admin done

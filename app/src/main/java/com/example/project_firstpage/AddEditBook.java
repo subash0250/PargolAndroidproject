@@ -72,7 +72,6 @@ public class AddEditBook extends AppCompatActivity {
 
                 }
             });
-            // Load book details and set to EditTexts ()
         } else {
             setTitle("Add Book");
         }
