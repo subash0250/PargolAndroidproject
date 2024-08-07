@@ -43,8 +43,6 @@ public class Dashboard extends AppCompatActivity {
 
 
     private ListView bookListView;
-    //private ArrayAdapter<String> bookAdapter;
-//    private ArrayList<String> bookList;
 
     private List<Book> books;
     private BookAdapter adapter;
@@ -70,7 +68,7 @@ public class Dashboard extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Central Library");
         setSupportActionBar(toolbar);
-        // finished
+
 
         //search box
         SearchView searchView = findViewById(R.id.search_view);
@@ -79,9 +77,7 @@ public class Dashboard extends AppCompatActivity {
         bookListView = findViewById(R.id.bookListView);
 
 
-//        bookList = new ArrayList<>();
-//        bookAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bookList);
-//        bookListView.setAdapter(bookAdapter);
+
 
         books = new ArrayList<>();
         adapter = new BookAdapter(this, books);
@@ -192,8 +188,10 @@ public class Dashboard extends AppCompatActivity {
         }else if (itemId == R.id.menu_sign_out) {
             fun_sign_out();
             return true;
-        }
-        else {
+        } else if (itemId == R.id.menu_borrow) {
+            fun_borrow();
+            return true;
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }
@@ -210,6 +208,10 @@ public class Dashboard extends AppCompatActivity {
 
     private void fun_profile() {
         Intent intent = new Intent(Dashboard.this, Profile.class);
+        startActivity(intent);
+    }
+    private void fun_borrow() {
+        Intent intent = new Intent(Dashboard.this, BorrowActivity.class);
         startActivity(intent);
     }
 }

@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Profile extends AppCompatActivity {
     TextView textView_username, textView_email, textView_role;
-    Button button_back;
+    Button button_back, button_edit;
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
     DatabaseReference userReference;
@@ -39,6 +39,7 @@ public class Profile extends AppCompatActivity {
         userReference = FirebaseDatabase.getInstance().getReference("users");
 
         button_back = findViewById(R.id.btn_back);
+        button_edit = findViewById(R.id.btn_edit);
         textView_username = findViewById(R.id.profileName);
         textView_email = findViewById(R.id.profileEmail);
         textView_role = findViewById(R.id.profileRole);
@@ -46,6 +47,14 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        button_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Profile.this, ProfileEditActivity.class);
+                startActivity(intent);
             }
         });
 
