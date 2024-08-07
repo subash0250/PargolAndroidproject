@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_page2);
+        setContentView(R.layout.activity_login);
 
         Uname = findViewById(R.id.Email);
         pwd = findViewById(R.id.password);

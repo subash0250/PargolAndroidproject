@@ -7,6 +7,9 @@
         android:id="@+id/menu_about"
         android:title="About" />
     <item
+        android:id="@+id/menu_borrow"
+        android:title="My borrows" />
+    <item
         android:id="@+id/menu_sign_out"
         android:title="Sign Out" />
     
