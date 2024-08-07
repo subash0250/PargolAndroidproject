@@ -48,7 +48,7 @@ public class BorrowAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.user_book_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.user_borrow_book_item, parent, false);
         }
         final Book book = books.get(position);
         TextView bookTitle = convertView.findViewById(R.id.bookTitle);
@@ -56,7 +56,6 @@ public class BorrowAdapter extends BaseAdapter {
         TextView bookAvailability = convertView.findViewById(R.id.bookAvailability);
         bookTitle.setText(book.getTitle());
         bookAuthor.setText(book.getAuthor());
-        bookAvailability.setText(book.getIsAvailable() ? "Available" : "Unavailable");
 
         view_book_btn = convertView.findViewById(R.id.viewButton);
         view_book_btn.setOnClickListener(new View.OnClickListener() {

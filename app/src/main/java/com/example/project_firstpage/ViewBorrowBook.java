@@ -117,18 +117,16 @@ public class ViewBorrowBook extends AppCompatActivity {
 
     private void showBookOptions(String bookId, String title, String author, String language, String gener, String image, Boolean isAvailable) {
         books.child("isAvailable").setValue(true);
-//        Book book = new Book(bookId, title, author, language, gener, image, false);
-//        DatabaseReference borrowRef = FirebaseDatabase.getInstance().getReference("borrow").child(userId).child(bookId);
-//        borrowRef.setValue(book).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                Toast.makeText(ViewBorrowBook.this, "Book borrowed successfully", Toast.LENGTH_SHORT).show();
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(ViewBorrowBook.this, "Book borrow failed", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        booksRef.child(bookId).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(ViewBorrowBook.this, "Book returns success", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ViewBorrowBook.this, "Book returns failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

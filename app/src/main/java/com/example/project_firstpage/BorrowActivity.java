@@ -9,7 +9,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -39,6 +42,8 @@ public class BorrowActivity extends AppCompatActivity {
 
     private List<Book> books;
     private BorrowAdapter adapter;
+    private TextView noBookMsg;
+    private Button btn_back;
 
 
     private DatabaseReference booksRef;
@@ -64,7 +69,14 @@ public class BorrowActivity extends AppCompatActivity {
 
 
 
-
+        noBookMsg = findViewById(R.id.noBookMsg);
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         bookListView = findViewById(R.id.bookListView);
 
 
@@ -102,6 +114,8 @@ public class BorrowActivity extends AppCompatActivity {
                             Log.e(TAG, "Error retrieving book from snapshot: " + snapshot, e);
                         }
                     }
+                }else {
+                    noBookMsg.setVisibility(View.VISIBLE);
                 }
                 adapter.notifyDataSetChanged();
             }
