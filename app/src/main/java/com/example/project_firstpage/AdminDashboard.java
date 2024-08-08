@@ -40,7 +40,7 @@ public class AdminDashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashboard);
-        // tool bar
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Central Library");
         setSupportActionBar(toolbar);
