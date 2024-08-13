@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 public class AdminViewBorrowBook extends AppCompatActivity {
+    // admin
     private TextView tvTitle, tvAuthor,tvlanguage,tvgener, tvavailability, tvBorrowDate;
     private ImageView ivimage;
     private Button btnBack, btnReturn;
