@@ -7,6 +7,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,9 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Forgotpassword extends AppCompatActivity {
 
-    EditText edEmail;
+    EditText edEmail ;
+    TextView loginbutton;
 
-    Button forgetPassword,cancelbutton, loginbutton;
+    Button forgetPassword;
 
     FirebaseAuth mAuth;
     @SuppressLint("MissingInflatedId")
@@ -34,7 +36,7 @@ public class Forgotpassword extends AppCompatActivity {
 
         edEmail = findViewById(R.id.email);
         forgetPassword = findViewById(R.id.resetpwdbtn);
-        cancelbutton = findViewById(R.id.cancelbtn);
+
         loginbutton = findViewById(R.id.loginlbtn);
         mAuth = FirebaseAuth.getInstance();
 
@@ -43,14 +45,6 @@ public class Forgotpassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Resetpassword();
-            }
-        });
-        cancelbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent cancelactivity = new Intent(Forgotpassword.this, Login.class);
-                startActivity(cancelactivity);
-                finish();
             }
         });
         loginbutton.setOnClickListener(new View.OnClickListener() {
