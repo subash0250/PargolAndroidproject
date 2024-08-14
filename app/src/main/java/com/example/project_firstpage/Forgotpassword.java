@@ -47,14 +47,6 @@ public class Forgotpassword extends AppCompatActivity {
                 Resetpassword();
             }
         });
-        cancelbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent cancelactivity = new Intent(Forgotpassword.this, Login.class);
-                startActivity(cancelactivity);
-                finish();
-            }
-        });
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
