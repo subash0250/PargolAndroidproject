@@ -30,7 +30,5 @@ public class AdminViewBorrowBook extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin_view_borrow_book);
 
-
-    });
     }
 }
