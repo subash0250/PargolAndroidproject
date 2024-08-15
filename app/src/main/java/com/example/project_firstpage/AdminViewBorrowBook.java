@@ -18,17 +18,20 @@ public class AdminViewBorrowBook extends AppCompatActivity {
     // admin
     private TextView tvTitle, tvAuthor,tvlanguage,tvgener, tvavailability, tvBorrowDate;
     private ImageView ivimage;
-    private Button btnBack, btnReturn;
+    private Button  btnBack, btnReturn;
     private String bookId, title, author, language, gener, image, borrowDate ;
     private Boolean isAvailable;
     private DatabaseReference booksRef, books;
     FirebaseAuth mAuth;
     private  String userId;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin_view_borrow_book);
+        mAuth = FirebaseAuth.getInstance();
 
     }
 }
