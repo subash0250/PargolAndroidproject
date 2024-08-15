@@ -1,9 +1,13 @@
 package com.example.project_firstpage;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -27,17 +31,43 @@ public class AdminborrowbookAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public Object getItem(int position) {
+        return users.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.admin_borrow_user_item, parent, false);
+        }
+
+        final User user = users.get(position);
+        TextView userFirstName = convertView.findViewById(R.id.firstname);
+        TextView userLastName = convertView.findViewById(R.id.lastname);
+        ImageButton viewBookBtn = convertView.findViewById(R.id.viewButton);
+
+        userFirstName.setText(user.getFirstName());
+        userLastName.setText(user.getLastName());
+
+        viewBookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AdminViewBorrowBook.class);
+                intent.putExtra("userId", user.getUserId());
+                context.startActivity(intent);
+            }
+        });
+
+        return convertView;
+    }
+    public void updateData(List<User> data) {
+        this.users.clear();
+        this.users.addAll(data);
+        notifyDataSetChanged();
     }
 }
