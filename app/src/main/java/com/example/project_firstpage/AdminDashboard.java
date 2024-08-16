@@ -118,6 +118,10 @@ public class AdminDashboard extends AppCompatActivity {
             fun_sign_out();
             return true;
         }
+        else if (itemId == R.id.menu_user_borrowedbook_list) {
+           fun_Admin_borrow();
+            return true;
+        }
         else {
             return super.onOptionsItemSelected(item);
         }
@@ -135,6 +139,10 @@ public class AdminDashboard extends AppCompatActivity {
 
     private void fun_profile() {
         Intent intent = new Intent(AdminDashboard.this, Profile.class);
+        startActivity(intent);
+    }
+    private void fun_Admin_borrow() {
+        Intent intent = new Intent(AdminDashboard.this, AdminViewBorrowBook.class);
         startActivity(intent);
     }
 }

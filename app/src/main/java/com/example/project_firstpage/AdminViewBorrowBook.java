@@ -58,7 +58,7 @@ public class AdminViewBorrowBook extends AppCompatActivity {
         tvgener = findViewById(R.id.Genere);
         ivimage = findViewById(R.id.Image);
         //tvavailability = findViewById(R.id.Availability);
-        tvBorrowDate = findViewById(R.id.BorrowDate);
+      //  tvBorrowDate = findViewById(R.id.BorrowDate);
         booksRef = FirebaseDatabase.getInstance().getReference("borrow").child(userId);
         bookId = getIntent().getStringExtra("bookId");
         Log.e("bookId", bookId);
@@ -131,7 +131,5 @@ public class AdminViewBorrowBook extends AppCompatActivity {
                 Toast.makeText(AdminViewBorrowBook.this, "Book returns failed", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-}
     }
 }
