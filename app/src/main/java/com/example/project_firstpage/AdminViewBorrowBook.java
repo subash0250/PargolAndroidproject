@@ -97,7 +97,7 @@ public class AdminViewBorrowBook extends AppCompatActivity {
 
             });
         } else {
-            // can't find book
+            Toast.makeText(this, "Can not find the book", Toast.LENGTH_SHORT).show();
         }
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
