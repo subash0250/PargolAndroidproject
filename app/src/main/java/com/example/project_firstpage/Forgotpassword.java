@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Forgotpassword extends AppCompatActivity {
 
     EditText edEmail ;
-    TextView loginbutton;
+    TextView backtologinbutton;
 
     Button forgetPassword;
 
@@ -37,7 +37,7 @@ public class Forgotpassword extends AppCompatActivity {
         edEmail = findViewById(R.id.email);
         forgetPassword = findViewById(R.id.resetpwdbtn);
 
-        loginbutton = findViewById(R.id.loginlbtn);
+        backtologinbutton = findViewById(R.id.loginlbtn);
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -47,7 +47,7 @@ public class Forgotpassword extends AppCompatActivity {
                 Resetpassword();
             }
         });
-        loginbutton.setOnClickListener(new View.OnClickListener() {
+       backtologinbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent loginIntent = new Intent(Forgotpassword.this, Login.class);

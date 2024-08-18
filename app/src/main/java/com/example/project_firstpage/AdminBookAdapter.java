@@ -53,10 +53,13 @@ public class AdminBookAdapter extends BaseAdapter {
         final Book book = books.get(position);
         TextView bookTitle = convertView.findViewById(R.id.bookTitle);
         TextView bookAuthor = convertView.findViewById(R.id.bookAuthor);
+        edit_book_btn = convertView.findViewById(R.id.editButton);
+        delete_book_btn = convertView.findViewById(R.id.deleteButton);
+
         bookTitle.setText(book.getTitle());
         bookAuthor.setText(book.getAuthor());
 
-        edit_book_btn = convertView.findViewById(R.id.editButton);
+
                 edit_book_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +68,8 @@ public class AdminBookAdapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
-        delete_book_btn = convertView.findViewById(R.id.deleteButton);
+
+
         delete_book_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

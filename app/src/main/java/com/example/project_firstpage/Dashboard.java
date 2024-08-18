@@ -72,12 +72,7 @@ public class Dashboard extends AppCompatActivity {
 
         //search box
         SearchView searchView = findViewById(R.id.search_view);
-
-
         bookListView = findViewById(R.id.bookListView);
-
-
-
 
         books = new ArrayList<>();
         adapter = new BookAdapter(this, books);

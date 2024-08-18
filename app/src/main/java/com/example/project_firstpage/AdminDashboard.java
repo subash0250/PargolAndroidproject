@@ -41,16 +41,15 @@ public class AdminDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashboard);
 
+        bookListView = findViewById(R.id.bookListView);
+        add_book_btn = findViewById(R.id.add_book_btn);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Central Library");
         setSupportActionBar(toolbar);
 
 
-        add_book_btn = findViewById(R.id.add_book_btn);
-
-
         booksRef = FirebaseDatabase.getInstance().getReference("books");
-        bookListView = findViewById(R.id.bookListView);
 
         books = new ArrayList<>();
         adapter = new AdminBookAdapter(this, books);
@@ -109,40 +108,26 @@ public class AdminDashboard extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == R.id.menu_profile) {
-            fun_profile();
+            Intent intent = new Intent(AdminDashboard.this, Profile.class);
+            startActivity(intent);
             return true;
         } else if (itemId == R.id.menu_about) {
-            fun_about();
+            Intent intent = new Intent(AdminDashboard.this, About.class);
+            startActivity(intent);
             return true;
         }else if (itemId == R.id.menu_sign_out) {
-            fun_sign_out();
+            Intent intent = new Intent(AdminDashboard.this, SignOut.class);
+            startActivity(intent);
             return true;
         }
         else if (itemId == R.id.menu_user_borrowedbook_list) {
-           fun_Admin_borrow();
+
+            Intent intent = new Intent(AdminDashboard.this, Admin_borrow.class);
+            startActivity(intent);
             return true;
         }
         else {
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void fun_sign_out() {
-        Intent intent = new Intent(AdminDashboard.this, SignOut.class);
-        startActivity(intent);
-    }
-
-    private void fun_about() {
-        Intent intent = new Intent(AdminDashboard.this, About.class);
-        startActivity(intent);
-    }
-
-    private void fun_profile() {
-        Intent intent = new Intent(AdminDashboard.this, Profile.class);
-        startActivity(intent);
-    }
-    private void fun_Admin_borrow() {
-        Intent intent = new Intent(AdminDashboard.this, AdminViewBorrowBook.class);
-        startActivity(intent);
     }
 }

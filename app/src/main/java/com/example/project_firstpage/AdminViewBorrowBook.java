@@ -1,9 +1,13 @@
 package com.example.project_firstpage;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +17,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -59,6 +64,14 @@ public class AdminViewBorrowBook extends AppCompatActivity {
         ivimage = findViewById(R.id.Image);
         //tvavailability = findViewById(R.id.Availability);
       //  tvBorrowDate = findViewById(R.id.BorrowDate);
+
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Central Library");
+        setSupportActionBar(toolbar);
+
+
         booksRef = FirebaseDatabase.getInstance().getReference("borrow").child(userId);
         bookId = getIntent().getStringExtra("bookId");
         Log.e("bookId", bookId);
@@ -131,5 +144,51 @@ public class AdminViewBorrowBook extends AppCompatActivity {
                 Toast.makeText(AdminViewBorrowBook.this, "Book returns failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.menu_profile) {
+            fun_profile();
+            return true;
+        } else if (itemId == R.id.menu_about) {
+            fun_about();
+            return true;
+        }else if (itemId == R.id.menu_sign_out) {
+            fun_sign_out();
+            return true;
+        } else if (itemId == R.id.menu_borrow) {
+            fun_borrow();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void fun_sign_out() {
+        Intent intent = new Intent(AdminViewBorrowBook.this, SignOut.class);
+        startActivity(intent);
+    }
+
+    private void fun_about() {
+        Intent intent = new Intent(AdminViewBorrowBook.this, About.class);
+        startActivity(intent);
+    }
+
+    private void fun_profile() {
+        Intent intent = new Intent(AdminViewBorrowBook.this, Profile.class);
+        startActivity(intent);
+    }
+    private void fun_borrow() {
+        Intent intent = new Intent(AdminViewBorrowBook.this, BorrowActivity.class);
+        startActivity(intent);
     }
 }
