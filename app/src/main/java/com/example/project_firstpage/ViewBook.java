@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -63,7 +64,13 @@ public class ViewBook extends AppCompatActivity {
         tvgener = findViewById(R.id.Genere);
         ivimage = findViewById(R.id.Image);
         tvavailability = findViewById(R.id.Availability);
-        //booksDatabase = FirebaseDatabase.getInstance().getReference("books");
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Central Library");
+        setSupportActionBar(toolbar);
+
+
         booksRef = FirebaseDatabase.getInstance().getReference("books");
         bookId = getIntent().getStringExtra("bookId");
         if (bookId != null) {
