@@ -1,15 +1,13 @@
 package com.example.project_firstpage;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,13 +15,15 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +32,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class AdminViewBorrowBook extends AppCompatActivity {
-    // admin
     private TextView tvTitle, tvAuthor,tvlanguage,tvgener, tvavailability, tvBorrowDate;
     private ImageView ivimage;
     private Button  btnBack, btnReturn;
@@ -42,19 +41,20 @@ public class AdminViewBorrowBook extends AppCompatActivity {
     FirebaseAuth mAuth;
     private  String userId;
 
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin_view_borrow_book);
         mAuth = FirebaseAuth.getInstance();
-        //        FirebaseUser user = mAuth.getCurrentUser();
+//        FirebaseUser user = mAuth.getCurrentUser();
 //        if(user != null){
 //            userId = user.getUid();
 //        }
         userId = getIntent().getStringExtra("userId");
         Log.e("userId", userId);
+        // Toast.makeText(this, "userId"+ userId, Toast.LENGTH_SHORT).show();
         btnBack = findViewById(R.id.btnBack);
         btnReturn = findViewById(R.id.btnReturn);
         tvTitle = findViewById(R.id.Title);
@@ -63,14 +63,8 @@ public class AdminViewBorrowBook extends AppCompatActivity {
         tvgener = findViewById(R.id.Genere);
         ivimage = findViewById(R.id.Image);
         //tvavailability = findViewById(R.id.Availability);
-      //  tvBorrowDate = findViewById(R.id.BorrowDate);
-
-
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Central Library");
-        setSupportActionBar(toolbar);
-
+        tvBorrowDate = findViewById(R.id.BorrowDate);
+        //booksDatabase = FirebaseDatabase.getInstance().getReference("books");
 
         booksRef = FirebaseDatabase.getInstance().getReference("borrow").child(userId);
         bookId = getIntent().getStringExtra("bookId");
@@ -107,10 +101,9 @@ public class AdminViewBorrowBook extends AppCompatActivity {
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-
             });
         } else {
-            Toast.makeText(this, "Can not find the book", Toast.LENGTH_SHORT).show();
+            // can't find book
         }
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,51 +137,5 @@ public class AdminViewBorrowBook extends AppCompatActivity {
                 Toast.makeText(AdminViewBorrowBook.this, "Book returns failed", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int itemId = item.getItemId();
-
-        if (itemId == R.id.menu_profile) {
-            fun_profile();
-            return true;
-        } else if (itemId == R.id.menu_about) {
-            fun_about();
-            return true;
-        }else if (itemId == R.id.menu_sign_out) {
-            fun_sign_out();
-            return true;
-        } else if (itemId == R.id.menu_borrow) {
-            fun_borrow();
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void fun_sign_out() {
-        Intent intent = new Intent(AdminViewBorrowBook.this, SignOut.class);
-        startActivity(intent);
-    }
-
-    private void fun_about() {
-        Intent intent = new Intent(AdminViewBorrowBook.this, About.class);
-        startActivity(intent);
-    }
-
-    private void fun_profile() {
-        Intent intent = new Intent(AdminViewBorrowBook.this, Profile.class);
-        startActivity(intent);
-    }
-    private void fun_borrow() {
-        Intent intent = new Intent(AdminViewBorrowBook.this, BorrowActivity.class);
-        startActivity(intent);
     }
 }
