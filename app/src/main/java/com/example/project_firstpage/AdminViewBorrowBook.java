@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,12 +15,15 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +32,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class AdminViewBorrowBook extends AppCompatActivity {
-    // admin
     private TextView tvTitle, tvAuthor,tvlanguage,tvgener, tvavailability, tvBorrowDate;
     private ImageView ivimage;
     private Button  btnBack, btnReturn;
@@ -37,19 +41,20 @@ public class AdminViewBorrowBook extends AppCompatActivity {
     FirebaseAuth mAuth;
     private  String userId;
 
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_admin_view_borrow_book);
         mAuth = FirebaseAuth.getInstance();
-        //        FirebaseUser user = mAuth.getCurrentUser();
+//        FirebaseUser user = mAuth.getCurrentUser();
 //        if(user != null){
 //            userId = user.getUid();
 //        }
         userId = getIntent().getStringExtra("userId");
         Log.e("userId", userId);
+        // Toast.makeText(this, "userId"+ userId, Toast.LENGTH_SHORT).show();
         btnBack = findViewById(R.id.btnBack);
         btnReturn = findViewById(R.id.btnReturn);
         tvTitle = findViewById(R.id.Title);
@@ -59,6 +64,8 @@ public class AdminViewBorrowBook extends AppCompatActivity {
         ivimage = findViewById(R.id.Image);
         //tvavailability = findViewById(R.id.Availability);
         tvBorrowDate = findViewById(R.id.BorrowDate);
+        //booksDatabase = FirebaseDatabase.getInstance().getReference("books");
+
         booksRef = FirebaseDatabase.getInstance().getReference("borrow").child(userId);
         bookId = getIntent().getStringExtra("bookId");
         Log.e("bookId", bookId);
@@ -94,7 +101,6 @@ public class AdminViewBorrowBook extends AppCompatActivity {
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-
             });
         } else {
             // can't find book
@@ -131,7 +137,5 @@ public class AdminViewBorrowBook extends AppCompatActivity {
                 Toast.makeText(AdminViewBorrowBook.this, "Book returns failed", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-}
     }
 }

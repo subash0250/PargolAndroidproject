@@ -3,8 +3,12 @@ package com.example.project_firstpage;
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -144,6 +148,48 @@ public class Admin_borrow extends AppCompatActivity {
                 Log.e(TAG, "Error loading users: " + databaseError.getMessage(), databaseError.toException());
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.admin_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.menu_profile) {
+            fun_profile();
+            return true;
+        } else if (itemId == R.id.menu_about) {
+            fun_about();
+            return true;
+        }else if (itemId == R.id.menu_sign_out) {
+            fun_sign_out();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+
+
+    private void fun_sign_out() {
+        Intent intent = new Intent(Admin_borrow.this, SignOut.class);
+        startActivity(intent);
+    }
+
+    private void fun_about() {
+        Intent intent = new Intent(Admin_borrow.this, About.class);
+        startActivity(intent);
+    }
+
+    private void fun_profile() {
+        Intent intent = new Intent(Admin_borrow.this, Profile.class);
+        startActivity(intent);
     }
 }
 

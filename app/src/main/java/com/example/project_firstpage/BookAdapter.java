@@ -59,6 +59,7 @@ public class BookAdapter extends BaseAdapter {
         bookAvailability.setText(book.getIsAvailable() ? "Available" : "Unavailable");
 
         view_book_btn = convertView.findViewById(R.id.viewButton);
+
         view_book_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

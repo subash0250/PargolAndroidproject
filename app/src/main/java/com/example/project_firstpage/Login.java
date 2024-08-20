@@ -78,7 +78,7 @@ public class Login extends AppCompatActivity {
         String passcode = pwd.getText().toString();
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("users");
-        //Query checkuserData = reference.orderByChild("email").equalTo(emailadd);
+
         if (emailadd.isEmpty() || passcode.isEmpty()) {
             Toast.makeText(Login.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;

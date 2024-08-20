@@ -1,6 +1,7 @@
 package com.example.project_firstpage;
 
 
+import java.util.Date;
 
 public class Book {
     private String id;
@@ -8,8 +9,9 @@ public class Book {
     private String author;
     private String language;
     private String gener;
-    private  String image;
+    private String image;
     private Boolean isAvailable;
+    private String borrowDate;
 
     public Book(){
 
@@ -23,6 +25,17 @@ public class Book {
         this.gener = gener;
         this.image = image;
         this.isAvailable = isAvailable;
+    }
+
+    public Book(String id, String title, String author, String language, String gener, String image, Boolean isAvailable, String borrowDate) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.language = language;
+        this.gener = gener;
+        this.image = image;
+        this.isAvailable = isAvailable;
+        this.borrowDate = borrowDate;
     }
 
     public String getId() {
@@ -61,9 +74,7 @@ public class Book {
         return gener;
     }
 
-    public void setGener(String gener) {
-        this.gener = gener;
-    }
+    public void setGener(String gener) {this.gener = gener;}
 
     public String getImage() {
         return image;
@@ -80,4 +91,8 @@ public class Book {
     public void setIsAvailable(Boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
+
+    public String getBorrowDate() {return borrowDate;}
+
+    public void setBorrowDate(String borrowDate) {this.borrowDate = borrowDate;}
 }

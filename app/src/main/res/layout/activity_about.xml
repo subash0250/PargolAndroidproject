@@ -31,7 +31,7 @@
         android:textSize="16sp"
         android:paddingStart="5dp"
         android:layout_marginTop="20dp"
-        android:text="Mind needs books like sword needs like whetstone, Knowledge is the most powerful, Library is where you see that power get started now " />
+        android:text="simple description about the application" />
     <Button
         android:id="@+id/btn_back"
         android:layout_width="match_parent"
@@ -40,8 +40,5 @@
         android:textColor="@android:color/white"
         android:layout_marginTop="16dp"
         android:text="Back" />
-
-
-
 
 </LinearLayout>
