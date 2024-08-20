@@ -27,9 +27,7 @@
         <activity
             android:name=".BorrowActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Myborrowedbooks"-->
-<!--            android:exported="false" />-->
+
         <activity
             android:name=".ViewBook"
             android:exported="false" />
@@ -51,12 +49,7 @@
         <activity
             android:name=".AddEditBook"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".ProfilePage"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".firstPage"-->
-<!--            android:exported="false" />-->
+
         <activity
             android:name=".Dashboard"
             android:exported="false" />
@@ -78,9 +71,7 @@
         <activity
             android:name=".Login"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".MainActivity"-->
-<!--            android:exported="false" />-->
+
     </application>
 
 </manifest>

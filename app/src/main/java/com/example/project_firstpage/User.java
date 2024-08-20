@@ -14,6 +14,10 @@ public class User {
         this.role = role;
     }
 
+    public User(){
+        // this is for firebase
+    }
+
     public String getUserId() {
         return userId;
     }

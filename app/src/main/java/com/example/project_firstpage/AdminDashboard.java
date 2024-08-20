@@ -120,7 +120,7 @@ public class AdminDashboard extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-        else if (itemId == R.id.menu_user_borrowedbook_list) {
+        else if (itemId == R.id.menu_borrow) {
 
             Intent intent = new Intent(AdminDashboard.this, Admin_borrow.class);
             startActivity(intent);
