@@ -63,7 +63,7 @@ public class AdminViewBorrowBook extends AppCompatActivity {
         tvgener = findViewById(R.id.Genere);
         ivimage = findViewById(R.id.Image);
         //tvavailability = findViewById(R.id.Availability);
-        tvBorrowDate = findViewById(R.id.BorrowDate);
+        //tvBorrowDate = findViewById(R.id.BorrowDate);
         //booksDatabase = FirebaseDatabase.getInstance().getReference("books");
 
         booksRef = FirebaseDatabase.getInstance().getReference("borrow").child(userId);
