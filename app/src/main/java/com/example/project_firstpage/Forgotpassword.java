@@ -1,6 +1,6 @@
 package com.example.project_firstpage;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -14,7 +14,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.project_firstpage.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +26,6 @@ public class Forgotpassword extends AppCompatActivity {
     Button forgetPassword;
 
     FirebaseAuth mAuth;
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +34,6 @@ public class Forgotpassword extends AppCompatActivity {
 
         edEmail = findViewById(R.id.email);
         forgetPassword = findViewById(R.id.resetpwdbtn);
-
         backtologinbutton = findViewById(R.id.loginlbtn);
         mAuth = FirebaseAuth.getInstance();
 
@@ -60,6 +57,7 @@ public class Forgotpassword extends AppCompatActivity {
 
 
     private void Resetpassword() {
+
         String email = edEmail.getText().toString().trim();
 
         if (email.isEmpty()) {
